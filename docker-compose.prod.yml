@@ -1,0 +1,27 @@
+services:
+  mysql:
+    volumes:
+      - /var/lib/market-monitor/mysql:/var/lib/mysql
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  api:
+    volumes:
+      - /var/lib/market-monitor/data:/app/data
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  scheduler:
+    volumes:
+      - /var/lib/market-monitor/data:/app/data
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"

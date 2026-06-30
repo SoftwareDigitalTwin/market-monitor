@@ -44,11 +44,32 @@ Si usas GCS en Docker, monta el JSON de credenciales como volumen o usa credenci
 
 ## 2. Levantar el stack
 
+Desarrollo/local:
+
 ```bash
 docker compose up -d --build
 ```
 
-El servicio `mysql` crea la base `dtc_market` y el usuario configurado. Los servicios `api` y `scheduler` esperan a MySQL y luego ejecutan `python main.py init`, que crea las tablas y fuentes iniciales de forma idempotente.
+Producción en servidor:
+
+```bash
+sudo mkdir -p /opt/market-monitor
+sudo mkdir -p /etc/market-monitor
+sudo mkdir -p /var/lib/market-monitor/mysql
+sudo mkdir -p /var/lib/market-monitor/data
+```
+
+Copia el proyecto a `/opt/market-monitor` y la configuración a `/etc/market-monitor/.env`. Luego levanta con:
+
+```bash
+cd /opt/market-monitor
+docker compose --env-file /etc/market-monitor/.env \
+  -f docker-compose.yml \
+  -f docker-compose.prod.yml \
+  up -d --build
+```
+
+El servicio `mysql` crea la base `dtc_market` y el usuario configurado. El servicio `api` espera a MySQL y ejecuta `python main.py init`, que crea las tablas y fuentes iniciales de forma idempotente. El `scheduler` espera a que el API esté saludable antes de empezar.
 
 ## 3. Consumir el API
 
@@ -101,12 +122,17 @@ docker compose logs -f mysql
 
 ## 6. Persistencia
 
-Los datos quedan en volúmenes Docker:
+En desarrollo los datos quedan en volúmenes Docker:
 
 - `mysql_data`: base MySQL.
 - `app_data`: logs, JSON de respaldo y fotos locales.
 
-No borres esos volúmenes si quieres conservar histórico.
+En producción con `docker-compose.prod.yml` quedan en rutas explícitas:
+
+- `/var/lib/market-monitor/mysql`: base MySQL.
+- `/var/lib/market-monitor/data`: logs internos, JSON de respaldo y fotos locales.
+
+No borres esos volúmenes o carpetas si quieres conservar histórico.
 
 ## Deduplicación
 
