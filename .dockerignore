@@ -1,0 +1,7 @@
+.venv
+__pycache__
+*.pyc
+.env
+data
+scripts/probe_e24_out
+.DS_Store

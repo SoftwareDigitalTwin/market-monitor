@@ -1,0 +1,238 @@
+"""API de lectura para consumir datos del monitor de mercado."""
+
+from datetime import date
+from typing import Optional
+
+from fastapi import Depends, FastAPI, Header, HTTPException, Query
+from fastapi.responses import FileResponse
+from sqlalchemy import func
+from sqlalchemy.orm import selectinload
+
+from dtc.config.settings import config
+from dtc.db.database import get_session
+from dtc.db.models import DataSource, ListingImage, RawListing, ScrapingRun
+
+app = FastAPI(title="DTC Market Monitor API", version="1.0.0")
+config.storage.local_dir.mkdir(parents=True, exist_ok=True)
+
+
+def require_api_key(x_api_key: Optional[str] = Header(default=None, alias="X-API-Key")):
+    api_keys = config.api.api_keys
+    if not api_keys:
+        raise HTTPException(
+            status_code=503,
+            detail="API authentication is not configured. Set DTC_API_KEYS.",
+        )
+    if x_api_key not in api_keys:
+        raise HTTPException(status_code=401, detail="Invalid or missing API key")
+
+
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
+
+@app.get("/auth/check", dependencies=[Depends(require_api_key)])
+def auth_check():
+    return {"authenticated": True}
+
+
+@app.get("/media/{file_path:path}", dependencies=[Depends(require_api_key)])
+def get_media(file_path: str):
+    base_dir = config.storage.local_dir.resolve()
+    target = (base_dir / file_path).resolve()
+    if base_dir not in target.parents and target != base_dir:
+        raise HTTPException(status_code=404, detail="Media not found")
+    if not target.is_file():
+        raise HTTPException(status_code=404, detail="Media not found")
+    return FileResponse(target)
+
+
+@app.get("/sources", dependencies=[Depends(require_api_key)])
+def list_sources():
+    with get_session() as session:
+        sources = session.query(DataSource).order_by(DataSource.name).all()
+        return [
+            {
+                "id": source.id,
+                "name": source.name,
+                "base_url": source.base_url,
+                "is_active": source.is_active,
+            }
+            for source in sources
+        ]
+
+
+@app.get("/listings", dependencies=[Depends(require_api_key)])
+def list_listings(
+    source: Optional[str] = None,
+    brand: Optional[str] = None,
+    model: Optional[str] = None,
+    year: Optional[int] = None,
+    date_from: Optional[date] = None,
+    date_to: Optional[date] = None,
+    limit: int = Query(100, ge=1, le=500),
+    offset: int = Query(0, ge=0),
+):
+    with get_session() as session:
+        query = (
+            session.query(RawListing)
+            .join(DataSource)
+            .options(selectinload(RawListing.source), selectinload(RawListing.listing_images))
+            .order_by(RawListing.capture_date.desc(), RawListing.id.desc())
+        )
+        if source:
+            query = query.filter(DataSource.name == source)
+        if brand:
+            query = query.filter(RawListing.norm_brand == brand)
+        if model:
+            query = query.filter(RawListing.norm_model == model)
+        if year:
+            query = query.filter(RawListing.norm_year == year)
+        if date_from:
+            query = query.filter(RawListing.capture_date >= date_from)
+        if date_to:
+            query = query.filter(RawListing.capture_date <= date_to)
+
+        total = query.count()
+        rows = query.offset(offset).limit(limit).all()
+        return {
+            "total": total,
+            "limit": limit,
+            "offset": offset,
+            "items": [_listing_summary(row) for row in rows],
+        }
+
+
+@app.get("/listings/{listing_id}", dependencies=[Depends(require_api_key)])
+def get_listing(listing_id: int):
+    with get_session() as session:
+        listing = (
+            session.query(RawListing)
+            .options(selectinload(RawListing.source), selectinload(RawListing.listing_images))
+            .filter(RawListing.id == listing_id)
+            .first()
+        )
+        if not listing:
+            raise HTTPException(status_code=404, detail="Listing not found")
+        data = _listing_summary(listing)
+        data.update({
+            "raw": {
+                "brand": listing.raw_brand,
+                "model": listing.raw_model,
+                "year": listing.raw_year,
+                "km": listing.raw_km,
+                "price": listing.raw_price,
+                "currency": listing.raw_currency,
+                "body_style": listing.raw_body_style,
+                "drivetrain": listing.raw_drivetrain,
+                "transmission": listing.raw_transmission,
+                "fuel": listing.raw_fuel,
+                "seller_type": listing.raw_seller_type,
+                "exterior_color": listing.raw_exterior_color,
+                "interior_color": listing.raw_interior_color,
+                "trim": listing.raw_trim,
+                "description": listing.raw_description,
+                "photos": listing.raw_photos,
+            }
+        })
+        return data
+
+
+@app.get("/runs", dependencies=[Depends(require_api_key)])
+def list_runs(limit: int = Query(50, ge=1, le=200)):
+    with get_session() as session:
+        runs = (
+            session.query(ScrapingRun)
+            .join(DataSource)
+            .options(selectinload(ScrapingRun.source))
+            .order_by(ScrapingRun.started_at.desc())
+            .limit(limit)
+            .all()
+        )
+        return [
+            {
+                "id": run.id,
+                "source": run.source.name,
+                "run_date": run.run_date,
+                "started_at": run.started_at,
+                "finished_at": run.finished_at,
+                "status": run.status,
+                "total_pages": run.total_pages,
+                "total_listings": run.total_listings,
+                "new_listings": run.new_listings,
+                "errors": run.errors,
+                "error_details": run.error_details,
+            }
+            for run in runs
+        ]
+
+
+@app.get("/analytics/summary", dependencies=[Depends(require_api_key)])
+def analytics_summary(capture_date: Optional[date] = None):
+    with get_session() as session:
+        query = session.query(RawListing)
+        if capture_date:
+            query = query.filter(RawListing.capture_date == capture_date)
+
+        by_brand = (
+            query.with_entities(
+                RawListing.norm_brand.label("brand"),
+                func.count(RawListing.id).label("count"),
+                func.avg(RawListing.norm_price_usd).label("avg_price_usd"),
+            )
+            .filter(RawListing.norm_brand.isnot(None))
+            .group_by(RawListing.norm_brand)
+            .order_by(func.count(RawListing.id).desc())
+            .limit(25)
+            .all()
+        )
+        return {
+            "capture_date": capture_date,
+            "total_listings": query.count(),
+            "by_brand": [
+                {
+                    "brand": row.brand,
+                    "count": int(row.count),
+                    "avg_price_usd": round(float(row.avg_price_usd), 2)
+                    if row.avg_price_usd is not None else None,
+                }
+                for row in by_brand
+            ],
+        }
+
+
+def _listing_summary(listing: RawListing) -> dict:
+    return {
+        "id": listing.id,
+        "source": listing.source.name,
+        "external_id": listing.external_id,
+        "url": listing.url,
+        "capture_date": listing.capture_date,
+        "brand": listing.norm_brand,
+        "model": listing.norm_model,
+        "year": listing.norm_year,
+        "km": listing.norm_km,
+        "price_usd": listing.norm_price_usd,
+        "body_style": listing.norm_body_style,
+        "drivetrain": listing.norm_drivetrain,
+        "transmission": listing.norm_transmission,
+        "fuel": listing.norm_fuel,
+        "seller_type": listing.norm_seller_type,
+        "exterior_color": listing.norm_exterior_color,
+        "trim": listing.norm_trim,
+        "images": [_image_payload(image) for image in listing.listing_images],
+        "created_at": listing.created_at,
+    }
+
+
+def _image_payload(image: ListingImage) -> dict:
+    return {
+        "id": image.id,
+        "source_url": image.source_url,
+        "storage_url": image.storage_url,
+        "storage_path": image.storage_path,
+        "content_type": image.content_type,
+        "image_order": image.image_order,
+        "checksum": image.checksum,
+    }

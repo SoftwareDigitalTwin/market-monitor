@@ -1,0 +1,82 @@
+2026-04-30 15:56:52 | INFO     | root | Logging configurado. Nivel: 20. Archivo: /Users/jehi/Desktop/DTC/market-monitor/data/logs/dtc_20260430.log
+2026-04-30 15:56:52 | ERROR    | __main__ | Error fatal: No module named 'bs4'
+Traceback (most recent call last):
+  File "/Users/jehi/Desktop/DTC/market-monitor/main.py", line 163, in main
+    commands[command]()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/Users/jehi/Desktop/DTC/market-monitor/main.py", line 146, in <lambda>
+    "scrape": lambda: cmd_scrape(source_arg, limit=limit),
+                      ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jehi/Desktop/DTC/market-monitor/main.py", line 88, in cmd_scrape
+    from dtc.scrapers.crautos_scraper import CRAutosScraper
+  File "/Users/jehi/Desktop/DTC/market-monitor/dtc/scrapers/crautos_scraper.py", line 19, in <module>
+    from bs4 import BeautifulSoup
+ModuleNotFoundError: No module named 'bs4'
+2026-04-30 15:57:18 | INFO     | root | Logging configurado. Nivel: 20. Archivo: /Users/jehi/Desktop/DTC/market-monitor/data/logs/dtc_20260430.log
+2026-04-30 15:57:18 | INFO     | __main__ | Iniciando scraping de CRAutos (limit=20)...
+2026-04-30 15:57:18 | DEBUG    | asyncio | Using selector: KqueueSelector
+2026-04-30 15:57:19 | INFO     | dtc.scrapers.base_scraper | Navegador iniciado para CRAutos
+2026-04-30 15:57:19 | INFO     | dtc.scrapers.base_scraper | Obteniendo listado de anuncios de CRAutos...
+2026-04-30 15:57:19 | INFO     | dtc.scrapers.crautos_scraper | Procesando página 1: https://www.crautos.com/autosusados/index.cfm?pg=1
+2026-04-30 15:57:22 | INFO     | dtc.scrapers.crautos_scraper |   → 20 URLs nuevas (acumulado: 20)
+2026-04-30 15:57:22 | INFO     | dtc.scrapers.crautos_scraper | Cupo de 20 alcanzado, detengo discovery.
+2026-04-30 15:57:22 | INFO     | dtc.scrapers.crautos_scraper | Total de URLs de anuncios encontradas: 20
+2026-04-30 15:57:22 | INFO     | dtc.scrapers.base_scraper | Limitando a los primeros 20 anuncios.
+2026-04-30 15:57:22 | INFO     | dtc.scrapers.base_scraper | Se encontraron 20 anuncios.
+2026-04-30 15:57:22 | INFO     | dtc.scrapers.base_scraper | [1/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=31745168
+2026-04-30 15:57:30 | INFO     | dtc.scrapers.base_scraper | [2/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=38094109
+2026-04-30 15:57:38 | INFO     | dtc.scrapers.base_scraper | [3/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=73252708
+2026-04-30 15:57:47 | INFO     | dtc.scrapers.base_scraper | [4/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=78380254
+2026-04-30 15:57:55 | INFO     | dtc.scrapers.base_scraper | [5/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=43830327
+2026-04-30 15:58:03 | INFO     | dtc.scrapers.base_scraper | [6/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=53574887
+2026-04-30 15:58:11 | INFO     | dtc.scrapers.base_scraper | [7/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=78588330
+2026-04-30 15:58:20 | INFO     | dtc.scrapers.base_scraper | [8/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=46959013
+2026-04-30 15:58:28 | INFO     | dtc.scrapers.base_scraper | [9/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=14354229
+2026-04-30 15:58:36 | INFO     | dtc.scrapers.base_scraper | [10/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=33513460
+2026-04-30 15:58:44 | INFO     | dtc.scrapers.base_scraper | [11/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=97491834
+2026-04-30 15:58:52 | INFO     | dtc.scrapers.base_scraper | [12/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=96894270
+2026-04-30 15:59:01 | INFO     | dtc.scrapers.base_scraper | [13/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=56436433
+2026-04-30 15:59:09 | INFO     | dtc.scrapers.base_scraper | [14/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=46672272
+2026-04-30 15:59:17 | INFO     | dtc.scrapers.base_scraper | [15/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=28983855
+2026-04-30 15:59:25 | INFO     | dtc.scrapers.base_scraper | [16/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=9747606
+2026-04-30 15:59:34 | INFO     | dtc.scrapers.base_scraper | [17/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=94405079
+2026-04-30 15:59:42 | INFO     | dtc.scrapers.base_scraper | [18/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=70212775
+2026-04-30 15:59:50 | INFO     | dtc.scrapers.base_scraper | [19/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=47910736
+2026-04-30 15:59:59 | INFO     | dtc.scrapers.base_scraper | [20/20] Procesando: https://www.crautos.com/autosusados/cardetail.cfm?c=7296411
+2026-04-30 16:00:07 | INFO     | dtc.scrapers.base_scraper | JSON guardado en /Users/jehi/Desktop/DTC/market-monitor/data/processed/crautos_2026-04-30.json (20 anuncios)
+2026-04-30 16:00:07 | INFO     | dtc.scrapers.base_scraper | Scraping de CRAutos finalizado | Páginas: 1 | Anuncios: 20 | Guardados: 20 | Errores: 0
+2026-04-30 16:00:07 | INFO     | dtc.scrapers.base_scraper | Navegador cerrado para CRAutos
+2026-04-30 16:03:37 | INFO     | root | Logging configurado. Nivel: 20. Archivo: /Users/jehi/Desktop/DTC/market-monitor/data/logs/dtc_20260430.log
+2026-04-30 16:03:37 | INFO     | __main__ | Iniciando scraping de Encuentra24 (limit=20)...
+2026-04-30 16:03:37 | DEBUG    | asyncio | Using selector: KqueueSelector
+2026-04-30 16:03:37 | INFO     | dtc.scrapers.base_scraper | Navegador iniciado para Encuentra24
+2026-04-30 16:03:37 | INFO     | dtc.scrapers.base_scraper | Obteniendo listado de anuncios de Encuentra24...
+2026-04-30 16:03:37 | INFO     | dtc.scrapers.encuentra24_scraper | Procesando página 1: https://www.encuentra24.com/costa-rica-es/autos-usados
+2026-04-30 16:03:41 | INFO     | dtc.scrapers.encuentra24_scraper |   → 20 URLs nuevas (acumulado: 20)
+2026-04-30 16:03:41 | INFO     | dtc.scrapers.encuentra24_scraper | Cupo de 20 alcanzado, detengo discovery.
+2026-04-30 16:03:41 | INFO     | dtc.scrapers.encuentra24_scraper | Total de URLs de anuncios encontradas: 20
+2026-04-30 16:03:41 | INFO     | dtc.scrapers.base_scraper | Limitando a los primeros 20 anuncios.
+2026-04-30 16:03:41 | INFO     | dtc.scrapers.base_scraper | Se encontraron 20 anuncios.
+2026-04-30 16:03:41 | INFO     | dtc.scrapers.base_scraper | [1/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/hyundai-tucson-2013-exclente-estado-precioso-turbo-diesel-automatico-llamadas-al/32313045
+2026-04-30 16:03:49 | INFO     | dtc.scrapers.base_scraper | [2/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/wrangler-rubicon-unlimited-2020/32049345
+2026-04-30 16:04:01 | INFO     | dtc.scrapers.base_scraper | [3/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/tucson-2014/32246231
+2026-04-30 16:04:10 | INFO     | dtc.scrapers.base_scraper | [4/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/tucson-2016/32133652
+2026-04-30 16:04:18 | INFO     | dtc.scrapers.base_scraper | [5/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/elantra-2013/32343219
+2026-04-30 16:04:26 | INFO     | dtc.scrapers.base_scraper | [6/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/mercedes-benz-c180-2012/32102031
+2026-04-30 16:04:38 | INFO     | dtc.scrapers.base_scraper | [7/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/nissan-kicks-2020/32270083
+2026-04-30 16:04:46 | INFO     | dtc.scrapers.base_scraper | [8/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/hyundai-accent/32304704
+2026-04-30 16:04:59 | INFO     | dtc.scrapers.base_scraper | [9/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/hyundai-grand-starex/31704005
+2026-04-30 16:05:12 | INFO     | dtc.scrapers.base_scraper | [10/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/kia-morning/31266916
+2026-04-30 16:05:24 | INFO     | dtc.scrapers.base_scraper | [11/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/toyota-fortuner-srv/31683518
+2026-04-30 16:05:37 | INFO     | dtc.scrapers.base_scraper | [12/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/wrangler-rubicon-2020/32190865
+2026-04-30 16:05:45 | INFO     | dtc.scrapers.base_scraper | [13/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/ford-escape-2017/31556943
+2026-04-30 16:05:57 | INFO     | dtc.scrapers.base_scraper | [14/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/toyota-corolla-sport/32311486
+2026-04-30 16:06:05 | INFO     | dtc.scrapers.base_scraper | [15/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/hyundai-tucson/32311557
+2026-04-30 16:06:13 | INFO     | dtc.scrapers.base_scraper | [16/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/hyundai-tucson/32311723
+2026-04-30 16:06:22 | INFO     | dtc.scrapers.base_scraper | [17/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/toyota-yaris-2007-manual-con-gas-lp-facilidades-de-pago-garantia-recibimos-su-auto-como-parte-de-pago/31896420
+2026-04-30 16:06:30 | INFO     | dtc.scrapers.base_scraper | [18/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/renault-duster-2022/31580058
+2026-04-30 16:06:38 | INFO     | dtc.scrapers.base_scraper | [19/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/toyota-yaris-e-2024/31580492
+2026-04-30 16:06:46 | INFO     | dtc.scrapers.base_scraper | [20/20] Procesando: https://www.encuentra24.com/costa-rica-es/autos-usados/toyota-4runner/32007162
+2026-04-30 16:06:59 | INFO     | dtc.scrapers.base_scraper | JSON guardado en /Users/jehi/Desktop/DTC/market-monitor/data/processed/encuentra24_2026-04-30.json (20 anuncios)
+2026-04-30 16:06:59 | INFO     | dtc.scrapers.base_scraper | Scraping de Encuentra24 finalizado | Páginas: 1 | Anuncios: 20 | Guardados: 20 | Errores: 0
+2026-04-30 16:06:59 | INFO     | dtc.scrapers.base_scraper | Navegador cerrado para Encuentra24

@@ -1,0 +1,1971 @@
+{
+  "url": "https://www.encuentra24.com/costa-rica-es/autos",
+  "anchor_listing_hrefs": [
+    "/costa-rica-es/autos-motos/can-am-commander-max-dps-1000r-2025/32354530",
+    "/costa-rica-es/autos-motos/harley-davidson-softail-deuce/32248807",
+    "/costa-rica-es/autos-motos/honda-cb500x-2022-en-estado-impecable-con-solo-6-869-km/32281378",
+    "/costa-rica-es/autos-motos/ktm-890-adventure-s-2024/32287548",
+    "/costa-rica-es/autos-motos/se-vende-como-nueva/32262640",
+    "/costa-rica-es/autos-motos/se-vende-cuadraciclo-polaris-sportsman-400-h-o/32295757",
+    "/costa-rica-es/autos-usados/2021-hyundai-kona-electric-19-000/32357131",
+    "/costa-rica-es/autos-usados/carro-de-golf-club-car-ds-electric-48-volts/31915687",
+    "/costa-rica-es/autos-usados/ev-hiunday-ioniq-2020-economico/32307493",
+    "/costa-rica-es/autos-usados/hyundai-venue-2022-automatico-gris/30269028",
+    "/costa-rica-es/autos-usados/mini-aceman-s-2025-ev/31853935",
+    "/costa-rica-es/autos-usados/mitsubishi-l200-sportero/32067806",
+    "/costa-rica-es/autos-usados/newo/32159626",
+    "/costa-rica-es/autos-usados/nissan-frontier-np300/32067780",
+    "/costa-rica-es/autos-usados/nissan-leaf-2022-at/31459523",
+    "/costa-rica-es/autos-usados/toyota-land-cruiser-prado-vx/31998994",
+    "/costa-rica-es/autos-usados/toyota-prado-2023/31836925",
+    "/costa-rica-es/autos-usados/toyota-raize-2024/31870212",
+    "/costa-rica-es/user/profile/id/1085397",
+    "/costa-rica-es/user/profile/id/1108779",
+    "/costa-rica-es/user/profile/id/1262774",
+    "/costa-rica-es/user/profile/id/12739023",
+    "/costa-rica-es/user/profile/id/1381580",
+    "/costa-rica-es/user/profile/id/14577480",
+    "/costa-rica-es/user/profile/id/16671582",
+    "/costa-rica-es/user/profile/id/1677640",
+    "/costa-rica-es/user/profile/id/1745169",
+    "/costa-rica-es/user/profile/id/1898609",
+    "/costa-rica-es/user/profile/id/2055006",
+    "/costa-rica-es/user/profile/id/225938"
+  ],
+  "anchor_count": 37,
+  "requests": [
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "GET",
+      "type": "document"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+      "method": "GET",
+      "type": "font"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/css/b0517875e695681f.css",
+      "method": "GET",
+      "type": "stylesheet"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/css/a71eed39d0b5d746.css",
+      "method": "GET",
+      "type": "stylesheet"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/css/9fc451794ca2a010.css",
+      "method": "GET",
+      "type": "stylesheet"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/css/f4bdeea066e5cf7b.css",
+      "method": "GET",
+      "type": "stylesheet"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/css/27ab798d36908a90.css",
+      "method": "GET",
+      "type": "stylesheet"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_cvr_l/f_auto/v1/public/homeIcons/autos-usados.png",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_cvr_l/f_auto/v1/public/homeIcons/autos-nuevos.png",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_cvr_l/f_auto/v1/public/homeIcons/motos.png",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_cvr_l/f_auto/v1/public/homeIcons/autos-electricos.png",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_cvr_l/f_auto/v1/public/homeIcons/autos-automaticos.png",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1622893288761-823ba60f17a6?q=80&w=1828&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1612287970084-4eb0bc4d4e34?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1624339024061-b435d9261c1d?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/webpack-c920c78d9faa849f.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/b2f5c9a4-df7098c81fab5c7a.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/78c48e08-7d1cc8d9db552ecb.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/2784-e4de9247f510bb1a.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/main-app-6e1304977def6f06.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/app/global-error-6fef750737a7ba17.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/1890-a02859ca7ad6a8d6.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/9789-7c154cb69f4fb8aa.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/2885-5b76e54a143bec42.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/6585-886f674a888b18aa.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/9983-ace8232a8211efa8.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/8437-e76f4e0b84438541.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/9568-835bc6cf0f9e11da.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/7329-a1fd96573011e410.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/8708-4280899b78f6d821.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/2950-02aecef2c5b4acec.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/4300-b502e0bfbc51f360.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/4162-4709183f3144ed2c.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/9445-30a7211036c521b7.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/app/%5Bcountry-lang%5D/layout-11bea3e28cc82e98.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/ff98930d-003da66136aa8f71.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/2929-6059cce73654255e.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/1745-7671dd8ecd6fdd87.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/9481-30bf9d7a97bcb0ac.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/973-cdf9c8280da92e90.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/2110-701ae35d5b711706.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/3780-569cdbde1217ca89.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/9512-d75c927f663698b5.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/7912-98816e3be2c29e88.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/614-08765897aefc8650.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/5674-0b736a41e3e3344f.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/app/layout-0bb08682a0af5821.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/app/error-0cc3aad8063e9a35.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/778002b0-f9d609d54fdd42b7.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/365-5c3d3c16f4cfadf7.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/3495-b462a3f282e79897.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/268-7bb4e45a01db86de.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/4340-54c3648cc09b287a.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/3696-9886b928c4b3a48d.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/app/%5Bcountry-lang%5D/%5B...path%5D/page-beff6b0c4add1193.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-PM6JWL",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_l/f_auto/v1/public/homeBanners/defaults/E24-cars-desktop.webp",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/media/8e9860b6e62d6359-s.woff2",
+      "method": "GET",
+      "type": "font"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/31/87/02/12/31870212_2895235",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://static.encuentra24.com/desktop/images/icons/features/highlight_3.svg",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/31/83/69/25/31836925_803068",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/06/77/80/32067780_c9c3c0b",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/06/78/06/32067806_443d59b",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/30/26/90/28/30269028_6ed07e",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/31/99/89/94/31998994_dabad42",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/35/71/31/32357131_7b891fb03eebbc48ef3dc7b0f932eb4f-d64d098",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://static.encuentra24.com/desktop/images/icons/features/highlight_1.svg",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/31/45/95/23/31459523_1b88a6",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/30/74/93/32307493_70a8f4a1962bcb247ea19aed43ab668e-73a89e6",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/31/91/56/87/31915687_a9c48c",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/31/85/39/35/31853935_83540f",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://static.encuentra24.com/desktop/images/icons/features/highlight_2.svg",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/15/96/26/32159626_33e7dd551d75e3bae1fb7ef719b1a429-734655c",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/35/45/30/32354530_61d7f42f25f45cf340537e1bb3835da6-22f0252",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/24/88/07/32248807_af3f39f50c81949e71aba431d9ae0472-24420c5",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/26/26/40/32262640_e841c79bab6d476ab889c17b26882d18-2a18072",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/28/13/78/32281378_fd63562c2c413f04f3944311640756fb-90dc6f6",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/28/75/48/32287548_bc179e3",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/29/57/57/32295757_9b7aa93",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/2055006_675a94",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/12739023_80eda4",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1898609_77a2f7",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1745169_3a928d",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/543484_7c09df",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/599382_a9590b",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/14577480_66a4cc",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1108779_282441",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/875070_ba5faa",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/225938_dfe96f",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1262774_f73892",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1381580_719bfd",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1677640_11adca",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/613600_4351e0",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/16671582_ab726f",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1085397_7e3677",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/2545123_2adce4",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/983441_aeaa7a",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/465544_9d84f7",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://flagcdn.com/pa.svg",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://flagcdn.com/cr.svg",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://flagcdn.com/sv.svg",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://flagcdn.com/gt.svg",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://flagcdn.com/hn.svg",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://flagcdn.com/ni.svg",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://flagcdn.com/co.svg",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://flagcdn.com/pr.svg",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://flagcdn.com/do.svg",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://flagcdn.com/py.svg",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://www.encuentra24.com/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://www.google.com/recaptcha/enterprise.js?render=6LegHO0qAAAAADk0sWgzOUz3RWTwEpm5u7VTjshX",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.googletagmanager.com/gtag/js?id=G-QZ0SFC34ED&cx=c&gtm=4e64s1h2",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://snap.licdn.com/li.lms-analytics/insight.min.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://a.teads.tv/analytics/tag.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://rum-static.pingdom.net/pa-61479dd8d5ce0d00110000f8.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://8bb6551157064c9cb1843426f7ddc72c.js.ubembed.com/",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://tags.creativecdn.com/RsrXXh7TCwv8JfC3IluT.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://connect.facebook.net/en_US/fbevents.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://www.google.com/ccm/collect?rcb=12&frm=0&ae=g&en=page_view&dl=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&scrsrc=www.googletagmanager.com&rnd=1437118454.1777495177&dt=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&auid=1812357425.1777495177&navt=n&npa=0&ep.ads_data_redaction=0&gtm=45He64s1h2v72496149za200zd72496149xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~117266400~118167059~118289195~118463261&apve=1&apvf=f&apvc=1&tft=1777495177127&tfd=1902",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/cdn-cgi/challenge-platform/h/b/scripts/jsd/0b8fb825cb67/main.js?",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/cdn-cgi/challenge-platform/h/b/jsd/oneshot/0b8fb825cb67/0.46156048845875797:1777494346:MnN3vh3tJZKnRdueFP-mWTynJ2quqLr4HNYQ8ljO-Hw/9f411defaa911fbd",
+      "method": "POST",
+      "type": "xhr"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.gstatic.com/recaptcha/releases/gTpTIWhbKpxADzTzkcabhXN4/recaptcha__en.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://www.googleadservices.com/pagead/conversion/1068686817/?random=1777495178134&cv=11&fst=1777495178134&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45je64s1h2v867630547z872496149za20gzb72496149zd72496149xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&rcb=8&label=undefined&capi=1&frm=0&tiba=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&bttype=purchase&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1812357425.1777495177&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uamb=0&uam=&uap=macOS&uapv=10_15_7&uaw=0&ec_mode=a&_tu=CA&gcl_ctr=1~0~0~0&category=acrcp_v1_512&em=tv.1&fmt=7",
+      "method": "GET",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.google.com/ccm/collect?rcb=8&frm=0&en=page_view&dl=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&scrsrc=www.googletagmanager.com&rnd=1437118454.1777495177&dt=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&auid=1812357425.1777495177&navt=n&npa=0&gtm=45je64s1h2v867630547z872496149za20gzb72496149zd72496149xec&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&apve=1&apvf=f&apvc=0&tids=AW-1068686817&tid=AW-1068686817&tft=1777495178147&tfd=2922",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://static.teads.tv/analytics/tag.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://us.creativecdn.com/tags/v2?type=json",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://assets.ubembed.com/universalscript/releases/v0.184.0/bundle.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://px.ads.linkedin.com/attribution_trigger?pid=1023098&time=1777495178228&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos",
+      "method": "GET",
+      "type": "xhr"
+    },
+    {
+      "url": "https://px.ads.linkedin.com/collect?v=2&fmt=js&pid=1023098&time=1777495178228&li_adsId=1116c389-9d8d-448d-8a0e-deee2dc6e522&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://connect.facebook.net/signals/config/1145555632185753?v=2.9.310&r=stable&domain=www.encuentra24.com&hme=97937018cefade17726f0472876fc101316b2ce9008a35a6a5a7977d7436151a&ex_m=104%2C205%2C154%2C22%2C72%2C73%2C145%2C68%2C67%2C11%2C162%2C90%2C16%2C138%2C127%2C39%2C75%2C78%2C134%2C159%2C164%2C8%2C4%2C5%2C7%2C6%2C3%2C91%2C101%2C165%2C170%2C219%2C62%2C186%2C187%2C55%2C276%2C30%2C74%2C231%2C230%2C229%2C23%2C33%2C103%2C61%2C10%2C63%2C97%2C98%2C99%2C105%2C130%2C31%2C29%2C132%2C133%2C129%2C128%2C155%2C76%2C158%2C156%2C157%2C50%2C60%2C123%2C15%2C161%2C45%2C263%2C264%2C262%2C26%2C27%2C28%2C48%2C146%2C77%2C112%2C18%2C20%2C44%2C40%2C42%2C41%2C83%2C92%2C96%2C110%2C144%2C147%2C46%2C111%2C24%2C21%2C119%2C69%2C36%2C149%2C148%2C150%2C141%2C139%2C25%2C35%2C59%2C109%2C160%2C70%2C17%2C152%2C114%2C81%2C66%2C19%2C85%2C86%2C116%2C84%2C136%2C135%2C34%2C278%2C293%2C212%2C201%2C202%2C200%2C296%2C288%2C52%2C213%2C107%2C131%2C80%2C121%2C54%2C47%2C49%2C113%2C120%2C126%2C58%2C64%2C151%2C115%2C37%2C32%2C53%2C56%2C100%2C163%2C1%2C124%2C14%2C122%2C12%2C2%2C57%2C93%2C65%2C118%2C89%2C88%2C166%2C167%2C94%2C95%2C9%2C125%2C102%2C51%2C142%2C87%2C79%2C71%2C117%2C106%2C43%2C143%2C0%2C82%2C137%2C140%2C153%2C38%2C108%2C13%2C168",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/1068686817/?random=897797061&cv=11&fst=1777495178134&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45je64s1h2v867630547z872496149za20gzb72496149zd72496149xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&rcb=8&label=undefined&capi=1&frm=0&tiba=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1812357425.1777495177&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uamb=0&uam=&uap=macOS&uapv=10_15_7&uaw=0&ec_mode=a&_tu=CA&gcl_ctr=1~0~0~0&category=acrcp_v1_512&em=tv.1&fmt=8&ct_cookie_present=false&crd=CLTesQII8t-xAgit4bECCKG4sQIIscGxAgiwwbECCLHDsQIIisWxAgjCybECCLTGsQIIk9qxAgjb3LECCIfbsQII08WxAgjrzLECCO3OsQII1c-xAgj02rECCJfUsQIIyduxAgix4bECCLPhsQIIpt2xAgiw3rECCIDbsQJKJnRyaWdnZXI9ZXZlbnQtc291cmNlO25hdmlnYXRpb24tc291cmNlWgMKAQFiAwoBAw&cerd=CgSN4b0t&eitems=ChAI8NjGzwYQvOCRl_LcjbRPEh0AC3fd4eC5agjpiVO8-n1_F2aZZfA7SMTgA7YCgA&fsk=ChAI8NjGzwYQ_Oq8i529zNZ2EiwATDQDeiqwjOZQ-x4LUxEWXjxO61L-713-XiC-zDw4jYZd82KNWRa9BIvmDRoChzI&pscrd=IhMIxY7fxfWTlAMVIJODCB33JwpIMgwIA2IICAAQABgAIAAyDAgEYggIABAAGAAgADIMCAdiCAgAEAAYACAAMgwICGIICAAQABgAIAAyDAgJYggIABAAGAAgADIMCApiCAgAEAAYACAAMgwIAmIICAAQABgAIAAyDAgLYggIABAAGAAgADIMCBViCAgAEAAYACAAMgwIH2IICAAQABgAIAAyDAgTYggIABAAGAAgADIMCBJiCAgAEAAYACAAOhxodHRwczovL3d3dy5lbmN1ZW50cmEyNC5jb20vQlhDaEVJOE5qR3p3WVF1TUhMeHNQUDU3MjZBUkl0QU1KQjNGR2Fyb0hMc1M3Nk96Ui14Qjl1TG01OU8xQlpjT2RSX1dmTkdKTzlubGZSclBzZnY2elB1RnNVegwICWIICAAQABgAIAA",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://at.teads.tv/fpc?analytics_tag_id=PUB_17026&tfpvi=&gdpr_status=22&gdpr_reason=220&gdpr_consent=&ccpa_consent=&shared_ids=&sv=d656f4a&",
+      "method": "GET",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://us.creativecdn.com/tags/v2?type=json&tc=1",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://ib.adnxs.com/setuid?entity=315&code=_23-Qm35LKit2cOwcRF0M0rFsXG0ERWhwVtRwBaHZyA&consent=1",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.google.com/pagead/1p-conversion/1068686817/?random=897797061&cv=11&fst=1777495178134&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45je64s1h2v867630547z872496149za20gzb72496149zd72496149xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&rcb=8&label=undefined&capi=1&frm=0&tiba=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1812357425.1777495177&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uamb=0&uam=&uap=macOS&uapv=10_15_7&uaw=0&ec_mode=a&_tu=CA&gcl_ctr=1~0~0~0&category=acrcp_v1_512&em=tv.1&fmt=8&ct_cookie_present=false&crd=CLTesQII8t-xAgit4bECCKG4sQIIscGxAgiwwbECCLHDsQIIisWxAgjCybECCLTGsQIIk9qxAgjb3LECCIfbsQII08WxAgjrzLECCO3OsQII1c-xAgj02rECCJfUsQIIyduxAgix4bECCLPhsQIIpt2xAgiw3rECCIDbsQJKJnRyaWdnZXI9ZXZlbnQtc291cmNlO25hdmlnYXRpb24tc291cmNlWgMKAQFiAwoBAw&cerd=CgSN4b0t&fsk=ChAI8NjGzwYQ_Oq8i529zNZ2EiwATDQDeiqwjOZQ-x4LUxEWXjxO61L-713-XiC-zDw4jYZd82KNWRa9BIvmDRoChzI&pscrd=IhMIxY7fxfWTlAMVIJODCB33JwpIMgwIA2IICAAQABgAIAAyDAgEYggIABAAGAAgADIMCAdiCAgAEAAYACAAMgwICGIICAAQABgAIAAyDAgJYggIABAAGAAgADIMCApiCAgAEAAYACAAMgwIAmIICAAQABgAIAAyDAgLYggIABAAGAAgADIMCBViCAgAEAAYACAAMgwIH2IICAAQABgAIAAyDAgTYggIABAAGAAgADIMCBJiCAgAEAAYACAAOhxodHRwczovL3d3dy5lbmN1ZW50cmEyNC5jb20vQlhDaEVJOE5qR3p3WVF1TUhMeHNQUDU3MjZBUkl0QU1KQjNGR2Fyb0hMc1M3Nk96Ui14Qjl1TG01OU8xQlpjT2RSX1dmTkdKTzlubGZSclBzZnY2elB1RnNVegwICWIICAAQABgAIAA&is_vtc=1&cid=CAQSyQEABaugfcd_WZbbvsRr60StZujlE5gjEt1myofl0Rp4NC1xtb8Y7-ZfMqDc3H_iHY_P3IkdjbdpFRskIPoQ_Dw3K3ZgdGR84ZFiCUceSygoiH6-QKFSLxB-_pMh2h9dLFQC00U8HPwKD6OOkbwiHTrt3QWpqcxnmug2-jEtab9v3jkjoMAXnQ2iaLe04px0od4FPlK3T4NivTXJ_PpNvYSJ1XPdXi1yzxm1tYBC6ZgmgHA5lxaawS_VowWMD-tC4-9voNRGZY3_ZWw&eitems=ChAI8NjGzwYQvOCRl_LcjbRPEh0AC3fd4dS_dxffOO8O3N__yXlkvlyP4iRmTkOsKw&random=3699639944",
+      "method": "GET",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.google.com.gt/pagead/1p-conversion/1068686817/?random=897797061&cv=11&fst=1777495178134&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45je64s1h2v867630547z872496149za20gzb72496149zd72496149xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&rcb=8&label=undefined&capi=1&frm=0&tiba=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1812357425.1777495177&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uamb=0&uam=&uap=macOS&uapv=10_15_7&uaw=0&ec_mode=a&_tu=CA&gcl_ctr=1~0~0~0&category=acrcp_v1_512&em=tv.1&fmt=8&ct_cookie_present=false&crd=CLTesQII8t-xAgit4bECCKG4sQIIscGxAgiwwbECCLHDsQIIisWxAgjCybECCLTGsQIIk9qxAgjb3LECCIfbsQII08WxAgjrzLECCO3OsQII1c-xAgj02rECCJfUsQIIyduxAgix4bECCLPhsQIIpt2xAgiw3rECCIDbsQJKJnRyaWdnZXI9ZXZlbnQtc291cmNlO25hdmlnYXRpb24tc291cmNlWgMKAQFiAwoBAw&cerd=CgSN4b0t&fsk=ChAI8NjGzwYQ_Oq8i529zNZ2EiwATDQDeiqwjOZQ-x4LUxEWXjxO61L-713-XiC-zDw4jYZd82KNWRa9BIvmDRoChzI&is_vtc=1&cid=CAQSyQEABaugfcd_WZbbvsRr60StZujlE5gjEt1myofl0Rp4NC1xtb8Y7-ZfMqDc3H_iHY_P3IkdjbdpFRskIPoQ_Dw3K3ZgdGR84ZFiCUceSygoiH6-QKFSLxB-_pMh2h9dLFQC00U8HPwKD6OOkbwiHTrt3QWpqcxnmug2-jEtab9v3jkjoMAXnQ2iaLe04px0od4FPlK3T4NivTXJ_PpNvYSJ1XPdXi1yzxm1tYBC6ZgmgHA5lxaawS_VowWMD-tC4-9voNRGZY3_ZWw&eitems=ChAI8NjGzwYQvOCRl_LcjbRPEh0AC3fd4dS_dxffOO8O3N__yXlkvlyP4iRmTkOsKw&random=3699639944&ipr=y&pscrd=IhMIxY7fxfWTlAMVIJODCB33JwpIMgwIA2IICAAQABgAIAAyDAgEYggIABAAGAAgADIMCAdiCAgAEAAYACAAMgwICGIICAAQABgAIAAyDAgJYggIABAAGAAgADIMCApiCAgAEAAYACAAMgwIAmIICAAQABgAIAAyDAgLYggIABAAGAAgADIMCBViCAgAEAAYACAAMgwIH2IICAAQABgAIAAyDAgTYggIABAAGAAgADIMCBJiCAgAEAAYACAAOhxodHRwczovL3d3dy5lbmN1ZW50cmEyNC5jb20vQlhDaEVJOE5qR3p3WVF1TUhMeHNQUDU3MjZBUkl0QU1KQjNGR2Fyb0hMc1M3Nk96Ui14Qjl1TG01OU8xQlpjT2RSX1dmTkdKTzlubGZSclBzZnY2elB1RnNVegwICWIICAAQABgAIACCAQVwAYgBAQ",
+      "method": "GET",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.google.com/recaptcha/enterprise/anchor?ar=1&k=6LegHO0qAAAAADk0sWgzOUz3RWTwEpm5u7VTjshX&co=aHR0cHM6Ly93d3cuZW5jdWVudHJhMjQuY29tOjQ0Mw..&hl=en&v=gTpTIWhbKpxADzTzkcabhXN4&size=invisible&anchor-ms=20000&execute-ms=30000&cb=ds571uklylds",
+      "method": "GET",
+      "type": "document"
+    },
+    {
+      "url": "https://www.gstatic.com/recaptcha/releases/gTpTIWhbKpxADzTzkcabhXN4/styles__ltr.css",
+      "method": "GET",
+      "type": "stylesheet"
+    },
+    {
+      "url": "https://www.gstatic.com/recaptcha/releases/gTpTIWhbKpxADzTzkcabhXN4/recaptcha__en.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://www.google.com/recaptcha/enterprise/webworker.js?hl=en&v=gTpTIWhbKpxADzTzkcabhXN4",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://www.gstatic.com/recaptcha/api2/logo_48.png",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2",
+      "method": "GET",
+      "type": "font"
+    },
+    {
+      "url": "https://connect.facebook.net/signals/config/627844017310887?v=2.9.310&r=stable&domain=www.encuentra24.com&hme=97937018cefade17726f0472876fc101316b2ce9008a35a6a5a7977d7436151a&ex_m=104%2C205%2C154%2C22%2C72%2C73%2C145%2C68%2C67%2C11%2C162%2C90%2C16%2C138%2C127%2C39%2C75%2C78%2C134%2C159%2C164%2C8%2C4%2C5%2C7%2C6%2C3%2C91%2C101%2C165%2C170%2C219%2C62%2C186%2C187%2C55%2C276%2C30%2C74%2C231%2C230%2C229%2C23%2C33%2C103%2C61%2C10%2C63%2C97%2C98%2C99%2C105%2C130%2C31%2C29%2C132%2C133%2C129%2C128%2C155%2C76%2C158%2C156%2C157%2C50%2C60%2C123%2C15%2C161%2C45%2C263%2C264%2C262%2C26%2C27%2C28%2C48%2C146%2C77%2C112%2C18%2C20%2C44%2C40%2C42%2C41%2C83%2C92%2C96%2C110%2C144%2C147%2C46%2C111%2C24%2C21%2C119%2C69%2C36%2C149%2C148%2C150%2C141%2C139%2C25%2C35%2C59%2C109%2C160%2C70%2C17%2C152%2C114%2C81%2C66%2C19%2C85%2C86%2C116%2C84%2C136%2C135%2C34%2C278%2C293%2C212%2C201%2C202%2C200%2C296%2C288%2C52%2C213%2C107%2C131%2C80%2C121%2C54%2C47%2C49%2C113%2C120%2C126%2C58%2C64%2C151%2C115%2C37%2C32%2C53%2C56%2C100%2C163%2C1%2C124%2C14%2C122%2C12%2C2%2C57%2C93%2C65%2C118%2C89%2C88%2C166%2C167%2C94%2C95%2C9%2C125%2C102%2C51%2C142%2C87%2C79%2C71%2C117%2C106%2C43%2C143%2C0%2C82%2C137%2C140%2C153%2C38%2C108%2C13%2C168%2C228%2C227%2C222%2C224%2C225%2C226%2C223%2C211%2C221%2C193%2C190%2C191%2C185%2C189%2C192%2C188%2C183%2C316%2C196%2C215%2C184%2C182%2C235%2C206%2C176%2C177%2C172%2C178%2C175%2C173%2C174%2C171%2C169%2C180%2C181%2C179%2C265%2C315%2C194%2C238%2C239%2C244%2C241%2C243%2C242%2C240%2C237",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://connect.facebook.net//log/error?p=automatic_parameters&pn=product_url_presend_but_no_content_id_sizing&sl=2&v=2.9.310&e=total&ue=0&rs=stable&rqm=FGET",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://www.facebook.com/tr/?id=1145555632185753&ev=PageView&dl=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&rl=&if=false&ts=1777495180495&sw=1440&sh=900&v=2.9.310&r=stable&ec=0&o=4126&fbp=fb.1.1777495180492.829039523603229086&ler=empty&pmd[title]=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&pmd[locale]=es&pmd[description]=Plataforma%20%231%20de%20compra%20y%20venta%20de%20autos%2C%20camiones%20y%20motos%20en%20Costa%20Rica%2C%20la%20mejor%20forma%20de%20compra%20y%20venta%20de%20veh%C3%ADculos.%20Encuentra%20Autos%20al%20mejor%20precio%20en%20Costa%20Rica%20por%20marca%20y%20modelo&pmd[keywords]=autos%20Costa%20Rica%2C%20carros%20Costa%20Rica%2C%20autos%2C%20compra%20y%20venta%20de%20autos&plt=1589.699999988079&mdc[data]=%7B%22json_ld%22%3A%7B%22b%22%3A%22AAAAAAAAAAAAAAAA%22%7D%2C%22opengraph%22%3A%7B%22b%22%3A%22yRQAAAEEAQQAAA%3D%3D%22%7D%2C%22schema_org%22%3A%7B%22b%22%3A%22AAAAAAAA%22%7D%7D&mdc[version]=b61802eee6f10e129073fa8d7e64f515&it=1777495178630&coo=false&expv2[0]=pl1&expv2[1]=el3&expv2[2]=bc1&expv2[3]=ra2&expv2[4]=rp2&expv2[5]=ct3&expv2[6]=hf0&rqm=GET",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://www.gstatic.com/recaptcha/releases/gTpTIWhbKpxADzTzkcabhXN4/recaptcha__en.js",
+      "method": "GET",
+      "type": "other"
+    },
+    {
+      "url": "https://www.facebook.com/tr/?id=627844017310887&ev=PageView&dl=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&rl=&if=false&ts=1777495180622&sw=1440&sh=900&v=2.9.310&r=stable&ec=0&o=4126&fbp=fb.1.1777495180492.829039523603229086&ler=empty&pmd[title]=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&pmd[locale]=es&pmd[description]=Plataforma%20%231%20de%20compra%20y%20venta%20de%20autos%2C%20camiones%20y%20motos%20en%20Costa%20Rica%2C%20la%20mejor%20forma%20de%20compra%20y%20venta%20de%20veh%C3%ADculos.%20Encuentra%20Autos%20al%20mejor%20precio%20en%20Costa%20Rica%20por%20marca%20y%20modelo&pmd[keywords]=autos%20Costa%20Rica%2C%20carros%20Costa%20Rica%2C%20autos%2C%20compra%20y%20venta%20de%20autos&plt=1589.699999988079&cs_est=true&it=1777495178630&coo=false&expv2[0]=pl1&expv2[1]=el3&expv2[2]=bc1&expv2[3]=ra2&expv2[4]=rp2&expv2[5]=ct3&expv2[6]=hf0&rqm=GET",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://ib.adnxs.com/bounce?%2Fsetuid%3Fentity%3D315%26code%3D_23-Qm35LKit2cOwcRF0M0rFsXG0ERWhwVtRwBaHZyA%26consent%3D1",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://px.ads.linkedin.com/collect?v=2&fmt=js&pid=1023098&time=1777495178228&li_adsId=1116c389-9d8d-448d-8a0e-deee2dc6e522&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&cookiesTest=true",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://www.linkedin.com/px/li_sync?redirect=https%3A%2F%2Fpx.ads.linkedin.com%2Fcollect%3Fv%3D2%26fmt%3Djs%26pid%3D1023098%26time%3D1777495178228%26li_adsId%3D1116c389-9d8d-448d-8a0e-deee2dc6e522%26url%3Dhttps%253A%252F%252Fwww.encuentra24.com%252Fcosta-rica-es%252Fautos%26cookiesTest%3Dtrue%26liSync%3Dtrue",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://px.ads.linkedin.com/collect?v=2&fmt=js&pid=1023098&time=1777495178228&li_adsId=1116c389-9d8d-448d-8a0e-deee2dc6e522&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&cookiesTest=true&liSync=true",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://px4.ads.linkedin.com/collect?v=2&fmt=js&pid=1023098&time=1777495178228&li_adsId=1116c389-9d8d-448d-8a0e-deee2dc6e522&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&cookiesTest=true&liSync=true&e_ipv6=AQKAxNdGgajhHAAAAZ3a-AlTqR6FXLvxsM394H884mKgz58vHA1On4DWTYHvLggg1slvb27OYyc4MgRgiouAFFBdJ2Tlag",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://px.ads.linkedin.com/wa/?medium=fetch&fmt=g",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/cdn-cgi/rum?",
+      "method": "POST",
+      "type": "xhr"
+    },
+    {
+      "url": "https://www.clarity.ms/tag/sq3wmj6j4u",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://rum-collector-2.pingdom.net/img/beacon.gif?id=61479dd8d5ce0d00110000f8&sAW=1440&sAH=900&bIW=1440&bIH=900&pD=24&dPR=1&or=landscape-primary&nT=0&rC=0&nS=0&cS=8&cE=284&dLE=7&dLS=5&fS=0&hS=139&rE=-1&rS=-1&reS=284&resS=428&resE=1028&uEE=-1&uES=-1&dL=1013&dI=1080&dCLES=1589&dCLEE=1590&dC=7092&lES=7092&lEE=7092&s=nt&title=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&path=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&ref=&sId=94knljin&sST=1777495182&sIS=1&rV=0&v=1.4.1",
+      "method": "GET",
+      "type": "xhr"
+    },
+    {
+      "url": "https://scripts.clarity.ms/0.8.59/clarity.js",
+      "method": "GET",
+      "type": "script"
+    },
+    {
+      "url": "https://c.clarity.ms/c.gif",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=C15764F3046747A2B960052B8DD183E2&RedC=c.clarity.ms&MXFR=314579B9CA586B65086D6EF3CE58650B",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://v.clarity.ms/collect",
+      "method": "POST",
+      "type": "xhr"
+    },
+    {
+      "url": "https://c.clarity.ms/c.gif?ctsa=mr&CtsSyncId=C15764F3046747A2B960052B8DD183E2&MUID=14EFC2F7C9596F342636D5BDC8586EC4",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://analytics.google.com/g/collect?v=2&tid=G-QZ0SFC34ED&gtm=45je64s1h2v867630547za20gzb72496149zd72496149&_p=1777495177052&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=1136588819&_eu=AEAAAGA&ae=a&are=1&cid=1735143394.1777495193&frm=0&pscdl=noapi&rcb=8&sr=1440x900&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uam=&uamb=0&uap=macOS&uapv=10_15_7&uaw=0&ul=en-us&_s=1&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&sid=1777495192&sct=1&seg=0&dl=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&dt=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&_tu=CA&en=scroll&_fv=1&_nsi=1&_ss=2&epn.percent_scrolled=90&tfd=17426",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://stats.g.doubleclick.net/g/collect?v=2&tid=G-QZ0SFC34ED&cid=1735143394.1777495193&gtm=45je64s1h2v867630547za20gzb72496149zd72496149&rcb=8&aip=1&dma=0&gcd=13l3l3l3l1l1&npa=0&frm=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262",
+      "method": "POST",
+      "type": "ping"
+    },
+    {
+      "url": "https://www.google.com.gt/ads/ga-audiences?v=1&t=sr&slf_rd=1&_r=4&tid=G-QZ0SFC34ED&cid=1735143394.1777495193&gtm=45je64s1h2v867630547za20gzb72496149zd72496149&rcb=8&aip=1&dma=0&gcd=13l3l3l3l1l1&npa=0&frm=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&z=2086357183",
+      "method": "GET",
+      "type": "image"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://v.clarity.ms/collect",
+      "method": "POST",
+      "type": "xhr"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "method": "POST",
+      "type": "fetch"
+    },
+    {
+      "url": "https://v.clarity.ms/collect",
+      "method": "POST",
+      "type": "xhr"
+    }
+  ],
+  "responses": [
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/css/b0517875e695681f.css",
+      "status": 200,
+      "content_type": "text/css"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/css/a71eed39d0b5d746.css",
+      "status": 200,
+      "content_type": "text/css"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/css/9fc451794ca2a010.css",
+      "status": 200,
+      "content_type": "text/css"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/css/f4bdeea066e5cf7b.css",
+      "status": 200,
+      "content_type": "text/css"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/css/27ab798d36908a90.css",
+      "status": 200,
+      "content_type": "text/css"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/app/global-error-6fef750737a7ba17.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/9789-7c154cb69f4fb8aa.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/webpack-c920c78d9faa849f.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/main-app-6e1304977def6f06.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/2885-5b76e54a143bec42.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/1890-a02859ca7ad6a8d6.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/9568-835bc6cf0f9e11da.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/b2f5c9a4-df7098c81fab5c7a.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/6585-886f674a888b18aa.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_cvr_l/f_auto/v1/public/homeIcons/motos.png",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_cvr_l/f_auto/v1/public/homeIcons/autos-automaticos.png",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_cvr_l/f_auto/v1/public/homeIcons/autos-usados.png",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_cvr_l/f_auto/v1/public/homeIcons/autos-nuevos.png",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_l/f_auto/v1/public/homeBanners/defaults/E24-cars-desktop.webp",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_cvr_l/f_auto/v1/public/homeIcons/autos-electricos.png",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://static.encuentra24.com/desktop/images/icons/features/highlight_1.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "url": "https://static.encuentra24.com/desktop/images/icons/features/highlight_2.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "url": "https://static.encuentra24.com/desktop/images/icons/features/highlight_3.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/78c48e08-7d1cc8d9db552ecb.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/31/87/02/12/31870212_2895235",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/06/78/06/32067806_443d59b",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1612287970084-4eb0bc4d4e34?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/2950-02aecef2c5b4acec.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://flagcdn.com/pa.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "url": "https://flagcdn.com/sv.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "url": "https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516",
+      "status": 200,
+      "content_type": "text/javascript;charset=UTF-8"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/8437-e76f4e0b84438541.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/9983-ace8232a8211efa8.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/7329-a1fd96573011e410.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/8708-4280899b78f6d821.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/4300-b502e0bfbc51f360.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/2784-e4de9247f510bb1a.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/31/83/69/25/31836925_803068",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/06/77/80/32067780_c9c3c0b",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1624339024061-b435d9261c1d?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/30/26/90/28/30269028_6ed07e",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/4162-4709183f3144ed2c.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/9445-30a7211036c521b7.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/app/%5Bcountry-lang%5D/layout-11bea3e28cc82e98.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/ff98930d-003da66136aa8f71.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/2929-6059cce73654255e.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/1745-7671dd8ecd6fdd87.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/9481-30bf9d7a97bcb0ac.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/973-cdf9c8280da92e90.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/2110-701ae35d5b711706.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/3780-569cdbde1217ca89.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/9512-d75c927f663698b5.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/7912-98816e3be2c29e88.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/614-08765897aefc8650.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/31/99/89/94/31998994_dabad42",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/app/error-0cc3aad8063e9a35.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/35/71/31/32357131_7b891fb03eebbc48ef3dc7b0f932eb4f-d64d098",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/app/layout-0bb08682a0af5821.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/5674-0b736a41e3e3344f.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/778002b0-f9d609d54fdd42b7.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1622893288761-823ba60f17a6?q=80&w=1828&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/31/45/95/23/31459523_1b88a6",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/30/74/93/32307493_70a8f4a1962bcb247ea19aed43ab668e-73a89e6",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://flagcdn.com/cr.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/365-5c3d3c16f4cfadf7.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/31/85/39/35/31853935_83540f",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://flagcdn.com/gt.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/15/96/26/32159626_33e7dd551d75e3bae1fb7ef719b1a429-734655c",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/31/91/56/87/31915687_a9c48c",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://flagcdn.com/co.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "url": "https://flagcdn.com/ni.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "url": "https://flagcdn.com/hn.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "url": "https://flagcdn.com/do.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "url": "https://flagcdn.com/pr.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "url": "https://flagcdn.com/py.svg",
+      "status": 200,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/3495-b462a3f282e79897.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/media/e4af272ccee01ff0-s.p.woff2",
+      "status": 200,
+      "content_type": "font/woff2"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/35/45/30/32354530_61d7f42f25f45cf340537e1bb3835da6-22f0252",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/268-7bb4e45a01db86de.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/3696-9886b928c4b3a48d.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/4340-54c3648cc09b287a.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/chunks/app/%5Bcountry-lang%5D/%5B...path%5D/page-beff6b0c4add1193.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/24/88/07/32248807_af3f39f50c81949e71aba431d9ae0472-24420c5",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://cdn1.encuentra24.com/new_site_statics/_next/static/media/8e9860b6e62d6359-s.woff2",
+      "status": 200,
+      "content_type": "font/woff2"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/26/26/40/32262640_e841c79bab6d476ab889c17b26882d18-2a18072",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/28/13/78/32281378_fd63562c2c413f04f3944311640756fb-90dc6f6",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-PM6JWL",
+      "status": 200,
+      "content_type": "application/javascript; charset=UTF-8"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/28/75/48/32287548_bc179e3",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_or_fh_m/f_auto/v1/cr/32/29/57/57/32295757_9b7aa93",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/2055006_675a94",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/12739023_80eda4",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1898609_77a2f7",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1745169_3a928d",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/543484_7c09df",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/599382_a9590b",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/14577480_66a4cc",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1108779_282441",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/875070_ba5faa",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/225938_dfe96f",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1262774_f73892",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1381580_719bfd",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1677640_11adca",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/613600_4351e0",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/16671582_ab726f",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/1085397_7e3677",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/2545123_2adce4",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/983441_aeaa7a",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://photos.encuentra24.com/t_logo/f_auto/v1/gallery/465544_9d84f7",
+      "status": 200,
+      "content_type": "image/avif"
+    },
+    {
+      "url": "https://www.encuentra24.com/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+      "status": 302,
+      "content_type": ""
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://www.encuentra24.com/cdn-cgi/challenge-platform/h/b/scripts/jsd/0b8fb825cb67/main.js?",
+      "status": 200,
+      "content_type": "application/javascript; charset=UTF-8"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://www.google.com/recaptcha/enterprise.js?render=6LegHO0qAAAAADk0sWgzOUz3RWTwEpm5u7VTjshX",
+      "status": 200,
+      "content_type": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://www.googletagmanager.com/gtag/js?id=G-QZ0SFC34ED&cx=c&gtm=4e64s1h2",
+      "status": 200,
+      "content_type": "application/javascript; charset=UTF-8"
+    },
+    {
+      "url": "https://www.google.com/ccm/collect?rcb=12&frm=0&ae=g&en=page_view&dl=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&scrsrc=www.googletagmanager.com&rnd=1437118454.1777495177&dt=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&auid=1812357425.1777495177&navt=n&npa=0&ep.ads_data_redaction=0&gtm=45He64s1h2v72496149za200zd72496149xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~117266400~118167059~118289195~118463261&apve=1&apvf=f&apvc=1&tft=1777495177127&tfd=1902",
+      "status": 200,
+      "content_type": ""
+    },
+    {
+      "url": "https://a.teads.tv/analytics/tag.js",
+      "status": 301,
+      "content_type": ""
+    },
+    {
+      "url": "https://tags.creativecdn.com/RsrXXh7TCwv8JfC3IluT.js",
+      "status": 200,
+      "content_type": "application/javascript"
+    },
+    {
+      "url": "https://8bb6551157064c9cb1843426f7ddc72c.js.ubembed.com/",
+      "status": 200,
+      "content_type": "application/javascript"
+    },
+    {
+      "url": "https://www.encuentra24.com/cdn-cgi/challenge-platform/h/b/jsd/oneshot/0b8fb825cb67/0.46156048845875797:1777494346:MnN3vh3tJZKnRdueFP-mWTynJ2quqLr4HNYQ8ljO-Hw/9f411defaa911fbd",
+      "status": 200,
+      "content_type": "text/plain; charset=UTF-8"
+    },
+    {
+      "url": "https://rum-static.pingdom.net/pa-61479dd8d5ce0d00110000f8.js",
+      "status": 200,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://snap.licdn.com/li.lms-analytics/insight.min.js",
+      "status": 200,
+      "content_type": "application/javascript;charset=utf-8"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://www.google.com/ccm/collect?rcb=8&frm=0&en=page_view&dl=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&scrsrc=www.googletagmanager.com&rnd=1437118454.1777495177&dt=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&auid=1812357425.1777495177&navt=n&npa=0&gtm=45je64s1h2v867630547z872496149za20gzb72496149zd72496149xec&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&apve=1&apvf=f&apvc=0&tids=AW-1068686817&tid=AW-1068686817&tft=1777495178147&tfd=2922",
+      "status": 200,
+      "content_type": ""
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://connect.facebook.net/en_US/fbevents.js",
+      "status": 200,
+      "content_type": "application/x-javascript; charset=utf-8"
+    },
+    {
+      "url": "https://www.googleadservices.com/pagead/conversion/1068686817/?random=1777495178134&cv=11&fst=1777495178134&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45je64s1h2v867630547z872496149za20gzb72496149zd72496149xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&rcb=8&label=undefined&capi=1&frm=0&tiba=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&bttype=purchase&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1812357425.1777495177&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uamb=0&uam=&uap=macOS&uapv=10_15_7&uaw=0&ec_mode=a&_tu=CA&gcl_ctr=1~0~0~0&category=acrcp_v1_512&em=tv.1&fmt=7",
+      "status": 200,
+      "content_type": "application/json; charset=UTF-8",
+      "sample": "event: message\ndata: {\"fetch\":[\"https://googleads.g.doubleclick.net/pagead/viewthroughconversion/1068686817/?random=897797061&cv=11&fst=1777495178134&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45je64s1h2v867630547z872496149za20gzb72496149zd72496149xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&rcb=8&label=undefined&capi=1&frm=0&tiba=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1812357425.1777495177&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uamb=0&uam=&uap=macOS&uapv=10_15_7&uaw=0&ec_mode=a&_tu=CA&gcl_ctr=1~0~0~0&category=acrcp_v1_512&em=tv.1&fmt=8&ct_cookie_present=false&crd=CLTesQII8t-xAgit4bECCKG4sQIIscGxAgiwwbECCLHDsQIIisWxAgjCybECCLTGsQIIk9qxAgjb3LECCIfbsQII08WxAgjrzLECCO3OsQII1c-xAgj02rECCJfUsQIIyduxAgix4bECCLPhsQIIpt2xAgiw3rECCIDbsQJKJnRyaWdnZXI9ZXZlbnQtc291cmNlO25hdmlnYXRpb24tc291cmNlWgMKAQFiAwoBAw&cerd=CgSN4b0t&eitems=ChAI8NjGzwYQvOCRl_LcjbRPEh0AC3fd4eC5agjpiVO8-n1_F2aZZfA7SMTgA7YCgA&fsk=ChAI8NjGzwYQ_Oq8i529zNZ2EiwATDQDeiqwjOZQ-x4LUxEWXjxO61L-713-XiC-zDw4jYZd82KNWRa9BIvmDRoChzI&pscrd=IhMIxY7fxfWTlAMVIJODCB33JwpIMgwIA2IICAAQABgAIAAyDAgEYggIABAAGAAgADIMCAdiCAgAEAAYACAAMgwICGIICAAQABgAIAAyDAgJYggIABAAGAAgADIMCApiCAgAEAAYACAAMgwIAmIICAAQABgAIAAyDAgLYggIABAAGAAgADIMCBViCAgAEAAYACAAMgwI",
+      "size": 3480
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://static.teads.tv/analytics/tag.js",
+      "status": 200,
+      "content_type": "text/javascript;charset=utf-8"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://at.teads.tv/fpc?analytics_tag_id=PUB_17026&tfpvi=&gdpr_status=22&gdpr_reason=220&gdpr_consent=&ccpa_consent=&shared_ids=&sv=d656f4a&",
+      "status": 200,
+      "content_type": "text/plain; charset=UTF-8"
+    },
+    {
+      "url": "https://us.creativecdn.com/tags/v2?type=json",
+      "status": 307,
+      "content_type": ""
+    },
+    {
+      "url": "https://px.ads.linkedin.com/attribution_trigger?pid=1023098&time=1777495178228&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos",
+      "status": 200,
+      "content_type": "application/json",
+      "sample": "{}",
+      "size": 2
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://us.creativecdn.com/tags/v2?type=json&tc=1",
+      "status": 200,
+      "content_type": "application/json;charset=utf-8",
+      "sample": "[{\"url\":\"https://ib.adnxs.com/setuid?entity=315&code=_23-Qm35LKit2cOwcRF0M0rFsXG0ERWhwVtRwBaHZyA&consent=1\",\"type\":\"IMG\"}]",
+      "size": 122
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/1068686817/?random=897797061&cv=11&fst=1777495178134&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45je64s1h2v867630547z872496149za20gzb72496149zd72496149xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&rcb=8&label=undefined&capi=1&frm=0&tiba=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1812357425.1777495177&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uamb=0&uam=&uap=macOS&uapv=10_15_7&uaw=0&ec_mode=a&_tu=CA&gcl_ctr=1~0~0~0&category=acrcp_v1_512&em=tv.1&fmt=8&ct_cookie_present=false&crd=CLTesQII8t-xAgit4bECCKG4sQIIscGxAgiwwbECCLHDsQIIisWxAgjCybECCLTGsQIIk9qxAgjb3LECCIfbsQII08WxAgjrzLECCO3OsQII1c-xAgj02rECCJfUsQIIyduxAgix4bECCLPhsQIIpt2xAgiw3rECCIDbsQJKJnRyaWdnZXI9ZXZlbnQtc291cmNlO25hdmlnYXRpb24tc291cmNlWgMKAQFiAwoBAw&cerd=CgSN4b0t&eitems=ChAI8NjGzwYQvOCRl_LcjbRPEh0AC3fd4eC5agjpiVO8-n1_F2aZZfA7SMTgA7YCgA&fsk=ChAI8NjGzwYQ_Oq8i529zNZ2EiwATDQDeiqwjOZQ-x4LUxEWXjxO61L-713-XiC-zDw4jYZd82KNWRa9BIvmDRoChzI&pscrd=IhMIxY7fxfWTlAMVIJODCB33JwpIMgwIA2IICAAQABgAIAAyDAgEYggIABAAGAAgADIMCAdiCAgAEAAYACAAMgwICGIICAAQABgAIAAyDAgJYggIABAAGAAgADIMCApiCAgAEAAYACAAMgwIAmIICAAQABgAIAAyDAgLYggIABAAGAAgADIMCBViCAgAEAAYACAAMgwIH2IICAAQABgAIAAyDAgTYggIABAAGAAgADIMCBJiCAgAEAAYACAAOhxodHRwczovL3d3dy5lbmN1ZW50cmEyNC5jb20vQlhDaEVJOE5qR3p3WVF1TUhMeHNQUDU3MjZBUkl0QU1KQjNGR2Fyb0hMc1M3Nk96Ui14Qjl1TG01OU8xQlpjT2RSX1dmTkdKTzlubGZSclBzZnY2elB1RnNVegwICWIICAAQABgAIAA",
+      "status": 302,
+      "content_type": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://www.google.com/pagead/1p-conversion/1068686817/?random=897797061&cv=11&fst=1777495178134&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45je64s1h2v867630547z872496149za20gzb72496149zd72496149xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&rcb=8&label=undefined&capi=1&frm=0&tiba=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1812357425.1777495177&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uamb=0&uam=&uap=macOS&uapv=10_15_7&uaw=0&ec_mode=a&_tu=CA&gcl_ctr=1~0~0~0&category=acrcp_v1_512&em=tv.1&fmt=8&ct_cookie_present=false&crd=CLTesQII8t-xAgit4bECCKG4sQIIscGxAgiwwbECCLHDsQIIisWxAgjCybECCLTGsQIIk9qxAgjb3LECCIfbsQII08WxAgjrzLECCO3OsQII1c-xAgj02rECCJfUsQIIyduxAgix4bECCLPhsQIIpt2xAgiw3rECCIDbsQJKJnRyaWdnZXI9ZXZlbnQtc291cmNlO25hdmlnYXRpb24tc291cmNlWgMKAQFiAwoBAw&cerd=CgSN4b0t&fsk=ChAI8NjGzwYQ_Oq8i529zNZ2EiwATDQDeiqwjOZQ-x4LUxEWXjxO61L-713-XiC-zDw4jYZd82KNWRa9BIvmDRoChzI&pscrd=IhMIxY7fxfWTlAMVIJODCB33JwpIMgwIA2IICAAQABgAIAAyDAgEYggIABAAGAAgADIMCAdiCAgAEAAYACAAMgwICGIICAAQABgAIAAyDAgJYggIABAAGAAgADIMCApiCAgAEAAYACAAMgwIAmIICAAQABgAIAAyDAgLYggIABAAGAAgADIMCBViCAgAEAAYACAAMgwIH2IICAAQABgAIAAyDAgTYggIABAAGAAgADIMCBJiCAgAEAAYACAAOhxodHRwczovL3d3dy5lbmN1ZW50cmEyNC5jb20vQlhDaEVJOE5qR3p3WVF1TUhMeHNQUDU3MjZBUkl0QU1KQjNGR2Fyb0hMc1M3Nk96Ui14Qjl1TG01OU8xQlpjT2RSX1dmTkdKTzlubGZSclBzZnY2elB1RnNVegwICWIICAAQABgAIAA&is_vtc=1&cid=CAQSyQEABaugfcd_WZbbvsRr60StZujlE5gjEt1myofl0Rp4NC1xtb8Y7-ZfMqDc3H_iHY_P3IkdjbdpFRskIPoQ_Dw3K3ZgdGR84ZFiCUceSygoiH6-QKFSLxB-_pMh2h9dLFQC00U8HPwKD6OOkbwiHTrt3QWpqcxnmug2-jEtab9v3jkjoMAXnQ2iaLe04px0od4FPlK3T4NivTXJ_PpNvYSJ1XPdXi1yzxm1tYBC6ZgmgHA5lxaawS_VowWMD-tC4-9voNRGZY3_ZWw&eitems=ChAI8NjGzwYQvOCRl_LcjbRPEh0AC3fd4dS_dxffOO8O3N__yXlkvlyP4iRmTkOsKw&random=3699639944",
+      "status": 302,
+      "content_type": "text/html; charset=UTF-8"
+    },
+    {
+      "url": "https://www.google.com.gt/pagead/1p-conversion/1068686817/?random=897797061&cv=11&fst=1777495178134&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45je64s1h2v867630547z872496149za20gzb72496149zd72496149xea&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&u_w=1440&u_h=900&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&rcb=8&label=undefined&capi=1&frm=0&tiba=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1812357425.1777495177&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uamb=0&uam=&uap=macOS&uapv=10_15_7&uaw=0&ec_mode=a&_tu=CA&gcl_ctr=1~0~0~0&category=acrcp_v1_512&em=tv.1&fmt=8&ct_cookie_present=false&crd=CLTesQII8t-xAgit4bECCKG4sQIIscGxAgiwwbECCLHDsQIIisWxAgjCybECCLTGsQIIk9qxAgjb3LECCIfbsQII08WxAgjrzLECCO3OsQII1c-xAgj02rECCJfUsQIIyduxAgix4bECCLPhsQIIpt2xAgiw3rECCIDbsQJKJnRyaWdnZXI9ZXZlbnQtc291cmNlO25hdmlnYXRpb24tc291cmNlWgMKAQFiAwoBAw&cerd=CgSN4b0t&fsk=ChAI8NjGzwYQ_Oq8i529zNZ2EiwATDQDeiqwjOZQ-x4LUxEWXjxO61L-713-XiC-zDw4jYZd82KNWRa9BIvmDRoChzI&is_vtc=1&cid=CAQSyQEABaugfcd_WZbbvsRr60StZujlE5gjEt1myofl0Rp4NC1xtb8Y7-ZfMqDc3H_iHY_P3IkdjbdpFRskIPoQ_Dw3K3ZgdGR84ZFiCUceSygoiH6-QKFSLxB-_pMh2h9dLFQC00U8HPwKD6OOkbwiHTrt3QWpqcxnmug2-jEtab9v3jkjoMAXnQ2iaLe04px0od4FPlK3T4NivTXJ_PpNvYSJ1XPdXi1yzxm1tYBC6ZgmgHA5lxaawS_VowWMD-tC4-9voNRGZY3_ZWw&eitems=ChAI8NjGzwYQvOCRl_LcjbRPEh0AC3fd4dS_dxffOO8O3N__yXlkvlyP4iRmTkOsKw&random=3699639944&ipr=y&pscrd=IhMIxY7fxfWTlAMVIJODCB33JwpIMgwIA2IICAAQABgAIAAyDAgEYggIABAAGAAgADIMCAdiCAgAEAAYACAAMgwICGIICAAQABgAIAAyDAgJYggIABAAGAAgADIMCApiCAgAEAAYACAAMgwIAmIICAAQABgAIAAyDAgLYggIABAAGAAgADIMCBViCAgAEAAYACAAMgwIH2IICAAQABgAIAAyDAgTYggIABAAGAAgADIMCBJiCAgAEAAYACAAOhxodHRwczovL3d3dy5lbmN1ZW50cmEyNC5jb20vQlhDaEVJOE5qR3p3WVF1TUhMeHNQUDU3MjZBUkl0QU1KQjNGR2Fyb0hMc1M3Nk96Ui14Qjl1TG01OU8xQlpjT2RSX1dmTkdKTzlubGZSclBzZnY2elB1RnNVegwICWIICAAQABgAIACCAQVwAYgBAQ",
+      "status": 200,
+      "content_type": ""
+    },
+    {
+      "url": "https://www.gstatic.com/recaptcha/releases/gTpTIWhbKpxADzTzkcabhXN4/recaptcha__en.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://www.google.com/recaptcha/enterprise/anchor?ar=1&k=6LegHO0qAAAAADk0sWgzOUz3RWTwEpm5u7VTjshX&co=aHR0cHM6Ly93d3cuZW5jdWVudHJhMjQuY29tOjQ0Mw..&hl=en&v=gTpTIWhbKpxADzTzkcabhXN4&size=invisible&anchor-ms=20000&execute-ms=30000&cb=ds571uklylds",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://www.gstatic.com/recaptcha/releases/gTpTIWhbKpxADzTzkcabhXN4/recaptcha__en.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://www.gstatic.com/recaptcha/releases/gTpTIWhbKpxADzTzkcabhXN4/styles__ltr.css",
+      "status": 200,
+      "content_type": "text/css"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "status": 200,
+      "content_type": "application/json",
+      "sample": "{\"ok\":true}",
+      "size": 11
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "status": 200,
+      "content_type": "application/json",
+      "sample": "{\"ok\":true}",
+      "size": 11
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "status": 200,
+      "content_type": "application/json",
+      "sample": "{\"ok\":true}",
+      "size": 11
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "status": 200,
+      "content_type": "application/json",
+      "sample": "{\"ok\":true}",
+      "size": 11
+    },
+    {
+      "url": "https://www.gstatic.com/recaptcha/api2/logo_48.png",
+      "status": 200,
+      "content_type": "image/png"
+    },
+    {
+      "url": "https://connect.facebook.net/signals/config/1145555632185753?v=2.9.310&r=stable&domain=www.encuentra24.com&hme=97937018cefade17726f0472876fc101316b2ce9008a35a6a5a7977d7436151a&ex_m=104%2C205%2C154%2C22%2C72%2C73%2C145%2C68%2C67%2C11%2C162%2C90%2C16%2C138%2C127%2C39%2C75%2C78%2C134%2C159%2C164%2C8%2C4%2C5%2C7%2C6%2C3%2C91%2C101%2C165%2C170%2C219%2C62%2C186%2C187%2C55%2C276%2C30%2C74%2C231%2C230%2C229%2C23%2C33%2C103%2C61%2C10%2C63%2C97%2C98%2C99%2C105%2C130%2C31%2C29%2C132%2C133%2C129%2C128%2C155%2C76%2C158%2C156%2C157%2C50%2C60%2C123%2C15%2C161%2C45%2C263%2C264%2C262%2C26%2C27%2C28%2C48%2C146%2C77%2C112%2C18%2C20%2C44%2C40%2C42%2C41%2C83%2C92%2C96%2C110%2C144%2C147%2C46%2C111%2C24%2C21%2C119%2C69%2C36%2C149%2C148%2C150%2C141%2C139%2C25%2C35%2C59%2C109%2C160%2C70%2C17%2C152%2C114%2C81%2C66%2C19%2C85%2C86%2C116%2C84%2C136%2C135%2C34%2C278%2C293%2C212%2C201%2C202%2C200%2C296%2C288%2C52%2C213%2C107%2C131%2C80%2C121%2C54%2C47%2C49%2C113%2C120%2C126%2C58%2C64%2C151%2C115%2C37%2C32%2C53%2C56%2C100%2C163%2C1%2C124%2C14%2C122%2C12%2C2%2C57%2C93%2C65%2C118%2C89%2C88%2C166%2C167%2C94%2C95%2C9%2C125%2C102%2C51%2C142%2C87%2C79%2C71%2C117%2C106%2C43%2C143%2C0%2C82%2C137%2C140%2C153%2C38%2C108%2C13%2C168",
+      "status": 200,
+      "content_type": "application/x-javascript; charset=utf-8"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "status": 200,
+      "content_type": "application/json",
+      "sample": "{\"ok\":true}",
+      "size": 11
+    },
+    {
+      "url": "https://www.google.com/recaptcha/enterprise/webworker.js?hl=en&v=gTpTIWhbKpxADzTzkcabhXN4",
+      "status": 200,
+      "content_type": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://www.gstatic.com/recaptcha/releases/gTpTIWhbKpxADzTzkcabhXN4/recaptcha__en.js",
+      "status": 200,
+      "content_type": "text/javascript"
+    },
+    {
+      "url": "https://connect.facebook.net/signals/config/627844017310887?v=2.9.310&r=stable&domain=www.encuentra24.com&hme=97937018cefade17726f0472876fc101316b2ce9008a35a6a5a7977d7436151a&ex_m=104%2C205%2C154%2C22%2C72%2C73%2C145%2C68%2C67%2C11%2C162%2C90%2C16%2C138%2C127%2C39%2C75%2C78%2C134%2C159%2C164%2C8%2C4%2C5%2C7%2C6%2C3%2C91%2C101%2C165%2C170%2C219%2C62%2C186%2C187%2C55%2C276%2C30%2C74%2C231%2C230%2C229%2C23%2C33%2C103%2C61%2C10%2C63%2C97%2C98%2C99%2C105%2C130%2C31%2C29%2C132%2C133%2C129%2C128%2C155%2C76%2C158%2C156%2C157%2C50%2C60%2C123%2C15%2C161%2C45%2C263%2C264%2C262%2C26%2C27%2C28%2C48%2C146%2C77%2C112%2C18%2C20%2C44%2C40%2C42%2C41%2C83%2C92%2C96%2C110%2C144%2C147%2C46%2C111%2C24%2C21%2C119%2C69%2C36%2C149%2C148%2C150%2C141%2C139%2C25%2C35%2C59%2C109%2C160%2C70%2C17%2C152%2C114%2C81%2C66%2C19%2C85%2C86%2C116%2C84%2C136%2C135%2C34%2C278%2C293%2C212%2C201%2C202%2C200%2C296%2C288%2C52%2C213%2C107%2C131%2C80%2C121%2C54%2C47%2C49%2C113%2C120%2C126%2C58%2C64%2C151%2C115%2C37%2C32%2C53%2C56%2C100%2C163%2C1%2C124%2C14%2C122%2C12%2C2%2C57%2C93%2C65%2C118%2C89%2C88%2C166%2C167%2C94%2C95%2C9%2C125%2C102%2C51%2C142%2C87%2C79%2C71%2C117%2C106%2C43%2C143%2C0%2C82%2C137%2C140%2C153%2C38%2C108%2C13%2C168%2C228%2C227%2C222%2C224%2C225%2C226%2C223%2C211%2C221%2C193%2C190%2C191%2C185%2C189%2C192%2C188%2C183%2C316%2C196%2C215%2C184%2C182%2C235%2C206%2C176%2C177%2C172%2C178%2C175%2C173%2C174%2C171%2C169%2C180%2C181%2C179%2C265%2C315%2C194%2C238%2C239%2C244%2C241%2C243%2C242%2C240%2C237",
+      "status": 200,
+      "content_type": "application/x-javascript; charset=utf-8"
+    },
+    {
+      "url": "https://www.facebook.com/tr/?id=1145555632185753&ev=PageView&dl=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&rl=&if=false&ts=1777495180495&sw=1440&sh=900&v=2.9.310&r=stable&ec=0&o=4126&fbp=fb.1.1777495180492.829039523603229086&ler=empty&pmd[title]=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&pmd[locale]=es&pmd[description]=Plataforma%20%231%20de%20compra%20y%20venta%20de%20autos%2C%20camiones%20y%20motos%20en%20Costa%20Rica%2C%20la%20mejor%20forma%20de%20compra%20y%20venta%20de%20veh%C3%ADculos.%20Encuentra%20Autos%20al%20mejor%20precio%20en%20Costa%20Rica%20por%20marca%20y%20modelo&pmd[keywords]=autos%20Costa%20Rica%2C%20carros%20Costa%20Rica%2C%20autos%2C%20compra%20y%20venta%20de%20autos&plt=1589.699999988079&mdc[data]=%7B%22json_ld%22%3A%7B%22b%22%3A%22AAAAAAAAAAAAAAAA%22%7D%2C%22opengraph%22%3A%7B%22b%22%3A%22yRQAAAEEAQQAAA%3D%3D%22%7D%2C%22schema_org%22%3A%7B%22b%22%3A%22AAAAAAAA%22%7D%7D&mdc[version]=b61802eee6f10e129073fa8d7e64f515&it=1777495178630&coo=false&expv2[0]=pl1&expv2[1]=el3&expv2[2]=bc1&expv2[3]=ra2&expv2[4]=rp2&expv2[5]=ct3&expv2[6]=hf0&rqm=GET",
+      "status": 200,
+      "content_type": "text/plain"
+    },
+    {
+      "url": "https://www.facebook.com/tr/?id=627844017310887&ev=PageView&dl=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&rl=&if=false&ts=1777495180622&sw=1440&sh=900&v=2.9.310&r=stable&ec=0&o=4126&fbp=fb.1.1777495180492.829039523603229086&ler=empty&pmd[title]=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&pmd[locale]=es&pmd[description]=Plataforma%20%231%20de%20compra%20y%20venta%20de%20autos%2C%20camiones%20y%20motos%20en%20Costa%20Rica%2C%20la%20mejor%20forma%20de%20compra%20y%20venta%20de%20veh%C3%ADculos.%20Encuentra%20Autos%20al%20mejor%20precio%20en%20Costa%20Rica%20por%20marca%20y%20modelo&pmd[keywords]=autos%20Costa%20Rica%2C%20carros%20Costa%20Rica%2C%20autos%2C%20compra%20y%20venta%20de%20autos&plt=1589.699999988079&cs_est=true&it=1777495178630&coo=false&expv2[0]=pl1&expv2[1]=el3&expv2[2]=bc1&expv2[3]=ra2&expv2[4]=rp2&expv2[5]=ct3&expv2[6]=hf0&rqm=GET",
+      "status": 200,
+      "content_type": "text/plain"
+    },
+    {
+      "url": "https://assets.ubembed.com/universalscript/releases/v0.184.0/bundle.js",
+      "status": 200,
+      "content_type": "application/javascript"
+    },
+    {
+      "url": "https://ib.adnxs.com/setuid?entity=315&code=_23-Qm35LKit2cOwcRF0M0rFsXG0ERWhwVtRwBaHZyA&consent=1",
+      "status": 307,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2",
+      "status": 200,
+      "content_type": "font/woff2"
+    },
+    {
+      "url": "https://px.ads.linkedin.com/collect?v=2&fmt=js&pid=1023098&time=1777495178228&li_adsId=1116c389-9d8d-448d-8a0e-deee2dc6e522&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos",
+      "status": 302,
+      "content_type": ""
+    },
+    {
+      "url": "https://ib.adnxs.com/bounce?%2Fsetuid%3Fentity%3D315%26code%3D_23-Qm35LKit2cOwcRF0M0rFsXG0ERWhwVtRwBaHZyA%26consent%3D1",
+      "status": 200,
+      "content_type": "image/gif"
+    },
+    {
+      "url": "https://px.ads.linkedin.com/collect?v=2&fmt=js&pid=1023098&time=1777495178228&li_adsId=1116c389-9d8d-448d-8a0e-deee2dc6e522&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&cookiesTest=true",
+      "status": 302,
+      "content_type": ""
+    },
+    {
+      "url": "https://www.linkedin.com/px/li_sync?redirect=https%3A%2F%2Fpx.ads.linkedin.com%2Fcollect%3Fv%3D2%26fmt%3Djs%26pid%3D1023098%26time%3D1777495178228%26li_adsId%3D1116c389-9d8d-448d-8a0e-deee2dc6e522%26url%3Dhttps%253A%252F%252Fwww.encuentra24.com%252Fcosta-rica-es%252Fautos%26cookiesTest%3Dtrue%26liSync%3Dtrue",
+      "status": 302,
+      "content_type": ""
+    },
+    {
+      "url": "https://px.ads.linkedin.com/collect?v=2&fmt=js&pid=1023098&time=1777495178228&li_adsId=1116c389-9d8d-448d-8a0e-deee2dc6e522&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&cookiesTest=true&liSync=true",
+      "status": 302,
+      "content_type": ""
+    },
+    {
+      "url": "https://px4.ads.linkedin.com/collect?v=2&fmt=js&pid=1023098&time=1777495178228&li_adsId=1116c389-9d8d-448d-8a0e-deee2dc6e522&url=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&cookiesTest=true&liSync=true&e_ipv6=AQKAxNdGgajhHAAAAZ3a-AlTqR6FXLvxsM394H884mKgz58vHA1On4DWTYHvLggg1slvb27OYyc4MgRgiouAFFBdJ2Tlag",
+      "status": 200,
+      "content_type": "application/javascript"
+    },
+    {
+      "url": "https://www.encuentra24.com/cdn-cgi/rum?",
+      "status": 204,
+      "content_type": "text/plain"
+    },
+    {
+      "url": "https://px.ads.linkedin.com/wa/?medium=fetch&fmt=g",
+      "status": 204,
+      "content_type": ""
+    },
+    {
+      "url": "https://www.clarity.ms/tag/sq3wmj6j4u",
+      "status": 200,
+      "content_type": "application/x-javascript"
+    },
+    {
+      "url": "https://rum-collector-2.pingdom.net/img/beacon.gif?id=61479dd8d5ce0d00110000f8&sAW=1440&sAH=900&bIW=1440&bIH=900&pD=24&dPR=1&or=landscape-primary&nT=0&rC=0&nS=0&cS=8&cE=284&dLE=7&dLS=5&fS=0&hS=139&rE=-1&rS=-1&reS=284&resS=428&resE=1028&uEE=-1&uES=-1&dL=1013&dI=1080&dCLES=1589&dCLEE=1590&dC=7092&lES=7092&lEE=7092&s=nt&title=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&path=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&ref=&sId=94knljin&sST=1777495182&sIS=1&rV=0&v=1.4.1",
+      "status": 200,
+      "content_type": ""
+    },
+    {
+      "url": "https://c.clarity.ms/c.gif",
+      "status": 302,
+      "content_type": ""
+    },
+    {
+      "url": "https://scripts.clarity.ms/0.8.59/clarity.js",
+      "status": 200,
+      "content_type": "application/javascript;charset=utf-8"
+    },
+    {
+      "url": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=C15764F3046747A2B960052B8DD183E2&RedC=c.clarity.ms&MXFR=314579B9CA586B65086D6EF3CE58650B",
+      "status": 302,
+      "content_type": ""
+    },
+    {
+      "url": "https://v.clarity.ms/collect",
+      "status": 204,
+      "content_type": ""
+    },
+    {
+      "url": "https://c.clarity.ms/c.gif?ctsa=mr&CtsSyncId=C15764F3046747A2B960052B8DD183E2&MUID=14EFC2F7C9596F342636D5BDC8586EC4",
+      "status": 200,
+      "content_type": "image/gif"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://www.encuentra24.com/costa-rica-es/autos",
+      "status": 200,
+      "content_type": "text/x-component"
+    },
+    {
+      "url": "https://v.clarity.ms/collect",
+      "status": 204,
+      "content_type": ""
+    },
+    {
+      "url": "https://analytics.google.com/g/collect?v=2&tid=G-QZ0SFC34ED&gtm=45je64s1h2v867630547za20gzb72496149zd72496149&_p=1777495177052&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&ecid=1136588819&_eu=AEAAAGA&ae=a&are=1&cid=1735143394.1777495193&frm=0&pscdl=noapi&rcb=8&sr=1440x900&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B99.0.0.0%7CHeadlessChrome%3B145.0.7632.6%7CChromium%3B145.0.7632.6&uam=&uamb=0&uap=macOS&uapv=10_15_7&uaw=0&ul=en-us&_s=1&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&sid=1777495192&sct=1&seg=0&dl=https%3A%2F%2Fwww.encuentra24.com%2Fcosta-rica-es%2Fautos&dt=Autos%20en%20Costa%20Rica%20%7C%20Compra%20y%20Venta%20de%20Veh%C3%ADculos&_tu=CA&en=scroll&_fv=1&_nsi=1&_ss=2&epn.percent_scrolled=90&tfd=17426",
+      "status": 204,
+      "content_type": "text/plain"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "status": 200,
+      "content_type": "application/json",
+      "sample": "{\"ok\":true}",
+      "size": 11
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "status": 200,
+      "content_type": "application/json",
+      "sample": "{\"ok\":true}",
+      "size": 11
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "status": 200,
+      "content_type": "application/json",
+      "sample": "{\"ok\":true}",
+      "size": 11
+    },
+    {
+      "url": "https://www.google.com.gt/ads/ga-audiences?v=1&t=sr&slf_rd=1&_r=4&tid=G-QZ0SFC34ED&cid=1735143394.1777495193&gtm=45je64s1h2v867630547za20gzb72496149zd72496149&rcb=8&aip=1&dma=0&gcd=13l3l3l3l1l1&npa=0&frm=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262&z=2086357183",
+      "status": 200,
+      "content_type": "image/gif"
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "status": 200,
+      "content_type": "application/json",
+      "sample": "{\"ok\":true}",
+      "size": 11
+    },
+    {
+      "url": "https://www.encuentra24.com/api.php/v2/clickhouse-tracker",
+      "status": 200,
+      "content_type": "application/json",
+      "sample": "{\"ok\":true}",
+      "size": 11
+    },
+    {
+      "url": "https://stats.g.doubleclick.net/g/collect?v=2&tid=G-QZ0SFC34ED&cid=1735143394.1777495193&gtm=45je64s1h2v867630547za20gzb72496149zd72496149&rcb=8&aip=1&dma=0&gcd=13l3l3l3l1l1&npa=0&frm=0&tag_exp=0~115938465~115938469~117266401~117384405~117512543~118289195~118463262",
+      "status": 204,
+      "content_type": "text/plain"
+    },
+    {
+      "url": "https://v.clarity.ms/collect",
+      "status": 204,
+      "content_type": ""
+    }
+  ]
+}
