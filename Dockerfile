@@ -27,8 +27,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt \
-    && playwright install chromium
+RUN python -m pip install --no-cache-dir --upgrade pip setuptools wheel
+RUN python -m pip install --no-cache-dir -r requirements.txt
+RUN python -m playwright install chromium
 
 COPY . .
 RUN chmod +x scripts/docker_entrypoint.sh scripts/run_daily.sh scripts/run_scheduler.sh
