@@ -115,6 +115,7 @@ class RawListing(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     source_id: Mapped[int] = mapped_column(Integer, ForeignKey("data_sources.id"), nullable=False)
     external_id: Mapped[Optional[str]] = mapped_column(String(200))  # ID del anuncio en la fuente
+    listing_key: Mapped[str] = mapped_column(String(64), nullable=False)
     url: Mapped[str] = mapped_column(String(700), nullable=False)
 
     # Datos del vehículo (tal como vienen de la fuente)
@@ -162,6 +163,7 @@ class RawListing(Base):
     listing_images = relationship("ListingImage", back_populates="listing")
 
     __table_args__ = (
+        UniqueConstraint("source_id", "listing_key", "capture_date", name="uq_source_listing_key_date"),
         UniqueConstraint("source_id", "external_id", "capture_date", name="uq_source_listing_date"),
         UniqueConstraint("source_id", "url", "capture_date", name="uq_source_url_date"),
         Index("ix_raw_listings_capture_date", "capture_date"),

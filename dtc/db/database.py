@@ -1,11 +1,11 @@
 """Conexión y sesión de base de datos MySQL."""
 
 from contextlib import contextmanager
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, inspect, text, func
 from sqlalchemy.orm import sessionmaker, Session
 
 from dtc.config.settings import config
-from dtc.db.models import Base
+from dtc.db.models import Base, RawListing
 
 
 # Motor de SQLAlchemy
@@ -24,7 +24,70 @@ SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 def init_db():
     """Crea todas las tablas en la base de datos."""
     Base.metadata.create_all(bind=engine)
+    ensure_listing_key_schema()
     print("✓ Tablas creadas correctamente en la base de datos.")
+
+
+def ensure_listing_key_schema():
+    """Agrega la llave canónica de deduplicación a instalaciones existentes."""
+    inspector = inspect(engine)
+    columns = {column["name"] for column in inspector.get_columns("raw_listings")}
+
+    with engine.begin() as connection:
+        if "listing_key" not in columns:
+            connection.execute(text(
+                "ALTER TABLE raw_listings ADD COLUMN listing_key VARCHAR(64) NULL"
+            ))
+
+    with get_session() as session:
+        from dtc.db.repository import build_listing_key
+
+        rows = (
+            session.query(RawListing)
+            .filter((RawListing.listing_key.is_(None)) | (RawListing.listing_key == ""))
+            .all()
+        )
+        for listing in rows:
+            listing.listing_key = build_listing_key(listing.source.name, {
+                "external_id": listing.external_id,
+                "url": listing.url,
+            })
+
+    with engine.begin() as connection:
+        connection.execute(text(
+            "ALTER TABLE raw_listings MODIFY listing_key VARCHAR(64) NOT NULL"
+        ))
+
+    indexes = {index["name"] for index in inspect(engine).get_indexes("raw_listings")}
+    if "uq_source_listing_key_date" not in indexes:
+        with get_session() as session:
+            duplicates = (
+                session.query(
+                    RawListing.source_id,
+                    RawListing.listing_key,
+                    RawListing.capture_date,
+                    func.count(RawListing.id).label("count"),
+                )
+                .group_by(RawListing.source_id, RawListing.listing_key, RawListing.capture_date)
+                .having(func.count(RawListing.id) > 1)
+                .limit(5)
+                .all()
+            )
+            if duplicates:
+                sample = ", ".join(
+                    f"source={row.source_id} key={row.listing_key} date={row.capture_date} count={row.count}"
+                    for row in duplicates
+                )
+                raise RuntimeError(
+                    "No se puede crear el índice anti-duplicados porque ya existen "
+                    f"raw_listings duplicados. Muestra: {sample}"
+                )
+        with engine.begin() as connection:
+            connection.execute(text(
+                "ALTER TABLE raw_listings "
+                "ADD UNIQUE INDEX uq_source_listing_key_date "
+                "(source_id, listing_key, capture_date)"
+            ))
 
 
 def drop_db():

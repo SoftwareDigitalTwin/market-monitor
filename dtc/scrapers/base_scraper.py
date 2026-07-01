@@ -18,11 +18,14 @@ from playwright.async_api import async_playwright, Page, Browser
 from bs4 import BeautifulSoup
 
 from dtc.config.settings import config, PROCESSED_DIR
-from dtc.db.database import get_session
+from dtc.db.database import SessionLocal, get_session
 from dtc.db.models import ScrapingRun
 from dtc.db.repository import (
+    acquire_source_lock,
     ensure_data_source,
     finish_scraping_run,
+    mark_abandoned_runs,
+    release_source_lock,
     start_scraping_run,
     upsert_raw_listing,
 )
@@ -41,9 +44,12 @@ class BaseScraper(ABC):
         self.browser: Optional[Browser] = None
         self.page: Optional[Page] = None
         self.scraping_run_id: Optional[int] = None
+        self.lock_acquired = False
+        self.lock_session = None
         self.config = config.scraper
         self.limit = limit  # opcional: tope de anuncios a parsear
         self.listings: list[dict] = []
+        self.error_messages: list[str] = []
         self.stats = {
             "total_pages": 0,
             "total_listings": 0,
@@ -75,8 +81,25 @@ class BaseScraper(ABC):
 
     def _start_run(self) -> int:
         """Registra el inicio de una corrida de scraping."""
+        self.lock_session = SessionLocal()
+        if not acquire_source_lock(self.lock_session, self.source_name):
+            self.lock_session.close()
+            self.lock_session = None
+            raise RuntimeError(
+                f"Ya hay una corrida activa para {self.source_name}. "
+                "Evito correr otra para no duplicar trabajo."
+            )
+        self.lock_acquired = True
+
         with get_session() as session:
             source = ensure_data_source(session, self.source_name)
+            abandoned = mark_abandoned_runs(session, source)
+            if abandoned:
+                logger.warning(
+                    "Se marcaron %s corridas anteriores como abandonadas para %s",
+                    abandoned,
+                    self.source_name,
+                )
             run = start_scraping_run(session, source)
             run_id = run.id
         self.scraping_run_id = run_id
@@ -109,6 +132,17 @@ class BaseScraper(ABC):
 
         record = {**listing_data, **normalized}
         self.listings.append(record)
+        return record
+
+    def _persist_listing(self, listing_data: dict) -> bool:
+        """Guarda un anuncio inmediatamente para no perder progreso si el proceso muere."""
+        storage = GCSImageStorage()
+        with get_session() as session:
+            source = ensure_data_source(session, self.source_name)
+            inserted = upsert_raw_listing(session, source, listing_data, storage)
+        if inserted:
+            self.stats["new_listings"] += 1
+        return inserted
 
     def _save_to_db(self) -> int:
         """Guarda anuncios acumulados en MySQL y evita duplicados diarios."""
@@ -127,6 +161,11 @@ class BaseScraper(ABC):
             len(self.listings),
         )
         return inserted
+
+    def _record_error(self, message: str, exc: Exception = None):
+        self.stats["errors"] += 1
+        detail = f"{message}: {exc}" if exc else message
+        self.error_messages.append(detail[:1000])
 
     def _save_to_json(self) -> str:
         """Escribe los anuncios acumulados en un archivo JSON."""
@@ -203,19 +242,24 @@ class BaseScraper(ABC):
                         listing_data["source_name"] = self.source_name
                         listing_data["capture_date"] = date.today().isoformat()
                         listing_data["url"] = url
-                        self._add_listing(listing_data)
+                        record = self._add_listing(listing_data)
+                        self._persist_listing(record)
 
                     await asyncio.sleep(self.config.delay_between_pages)
 
                 except Exception as e:
-                    self.stats["errors"] += 1
+                    self._record_error(f"Error procesando {url}", e)
                     logger.error(f"Error procesando {url}: {e}")
                     continue
 
-            self._save_to_db()
             if config.save_json_backup:
                 self._save_to_json()
-            self._finish_run(status="completed")
+            status = "completed"
+            error_details = "\n".join(self.error_messages[-10:]) or None
+            if self.stats["errors"] and not self.listings:
+                status = "failed"
+                error_details = error_details or "La corrida terminó sin anuncios y con errores."
+            self._finish_run(status=status, error_details=error_details)
             logger.info(
                 f"Scraping de {self.source_name} finalizado | "
                 f"Páginas: {self.stats['total_pages']} | "
@@ -225,10 +269,17 @@ class BaseScraper(ABC):
             )
 
         except Exception as e:
-            self.stats["errors"] += 1
+            self._record_error("Error fatal en scraping", e)
             self._finish_run(status="failed", error_details=str(e))
             logger.error(f"Error fatal en scraping de {self.source_name}: {e}")
             raise
 
         finally:
-            await self.close_browser()
+            try:
+                await self.close_browser()
+            finally:
+                if self.lock_acquired:
+                    release_source_lock(self.lock_session, self.source_name)
+                    self.lock_session.close()
+                    self.lock_session = None
+                    self.lock_acquired = False

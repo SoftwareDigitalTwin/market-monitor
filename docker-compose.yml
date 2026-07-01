@@ -7,6 +7,7 @@ services:
       MYSQL_USER: ${DTC_DB_USER:-dtc_user}
       MYSQL_PASSWORD: ${DTC_DB_PASSWORD:-dtc_password}
       MYSQL_ROOT_PASSWORD: ${DTC_DB_ROOT_PASSWORD:-dtc_root_password}
+      TZ: ${TZ:-America/Guatemala}
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
@@ -30,6 +31,7 @@ services:
       DTC_DB_NAME: ${DTC_DB_NAME:-dtc_market}
       DTC_DB_USER: ${DTC_DB_USER:-dtc_user}
       DTC_DB_PASSWORD: ${DTC_DB_PASSWORD:-dtc_password}
+      TZ: ${TZ:-America/Guatemala}
       DTC_INIT_DB: "true"
       DTC_API_KEYS: ${DTC_API_KEYS:-change-me-before-production}
       DTC_STORAGE_BACKEND: ${DTC_STORAGE_BACKEND:-local}
@@ -65,6 +67,7 @@ services:
       DTC_DB_NAME: ${DTC_DB_NAME:-dtc_market}
       DTC_DB_USER: ${DTC_DB_USER:-dtc_user}
       DTC_DB_PASSWORD: ${DTC_DB_PASSWORD:-dtc_password}
+      TZ: ${TZ:-America/Guatemala}
       DTC_INIT_DB: "false"
       DTC_STORAGE_BACKEND: ${DTC_STORAGE_BACKEND:-local}
       DTC_LOCAL_STORAGE_DIR: /app/data/images

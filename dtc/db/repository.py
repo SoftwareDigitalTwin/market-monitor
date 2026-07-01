@@ -1,19 +1,35 @@
 """Operaciones de escritura idempotente para datos de scraping."""
 
+import hashlib
 import logging
+from dataclasses import dataclass
 from datetime import date, datetime
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from dtc.db.models import DataSource, ListingImage, RawListing, ScrapingRun
-from dtc.storage.gcs import GCSImageStorage, StoredImage
+
+if TYPE_CHECKING:
+    from dtc.storage.gcs import GCSImageStorage
 
 logger = logging.getLogger(__name__)
 
 
+@dataclass
+class StoredImageFallback:
+    source_url: str
+    storage_url: str
+    storage_path: Optional[str]
+    content_type: Optional[str]
+    checksum: Optional[str]
+
+
 RAW_FIELDS = {
     "external_id",
+    "listing_key",
     "url",
     "raw_brand",
     "raw_model",
@@ -75,6 +91,25 @@ def start_scraping_run(session: Session, source: DataSource) -> ScrapingRun:
     return run
 
 
+def mark_abandoned_runs(session: Session, source: DataSource) -> int:
+    abandoned = (
+        session.query(ScrapingRun)
+        .filter(
+            ScrapingRun.source_id == source.id,
+            ScrapingRun.status == "running",
+        )
+        .all()
+    )
+    for run in abandoned:
+        run.finished_at = datetime.now()
+        run.status = "failed"
+        run.error_details = (
+            "Corrida marcada como abandonada al iniciar una nueva corrida. "
+            "Probablemente el proceso anterior fue terminado antes de finalizar."
+        )
+    return len(abandoned)
+
+
 def finish_scraping_run(
     session: Session,
     run: ScrapingRun,
@@ -91,23 +126,37 @@ def finish_scraping_run(
     run.error_details = error_details
 
 
+def acquire_source_lock(session: Session, source_name: str, timeout_seconds: int = 1) -> bool:
+    lock_name = f"market-monitor:{source_name.lower()}"
+    acquired = session.execute(
+        text("SELECT GET_LOCK(:lock_name, :timeout_seconds)"),
+        {"lock_name": lock_name, "timeout_seconds": timeout_seconds},
+    ).scalar()
+    return acquired == 1
+
+
+def release_source_lock(session: Session, source_name: str) -> None:
+    lock_name = f"market-monitor:{source_name.lower()}"
+    session.execute(
+        text("SELECT RELEASE_LOCK(:lock_name)"),
+        {"lock_name": lock_name},
+    )
+
+
 def upsert_raw_listing(
     session: Session,
     source: DataSource,
     listing_data: dict,
-    storage: GCSImageStorage,
+    storage: "GCSImageStorage",
 ) -> bool:
     capture_date = _parse_capture_date(listing_data["capture_date"])
-    external_id = listing_data.get("external_id")
+    listing_key = build_listing_key(source.name, listing_data)
 
     query = session.query(RawListing).filter(
         RawListing.source_id == source.id,
+        RawListing.listing_key == listing_key,
         RawListing.capture_date == capture_date,
     )
-    if external_id:
-        query = query.filter(RawListing.external_id == external_id)
-    else:
-        query = query.filter(RawListing.url == listing_data["url"])
 
     existing = query.first()
     payload = {
@@ -117,6 +166,7 @@ def upsert_raw_listing(
     }
     payload["source_id"] = source.id
     payload["capture_date"] = capture_date
+    payload["listing_key"] = listing_key
     payload["is_normalized"] = bool(listing_data.get("norm_brand") or listing_data.get("norm_model"))
 
     if existing:
@@ -138,7 +188,7 @@ def _upsert_listing_images(
     session: Session,
     listing: RawListing,
     listing_data: dict,
-    storage: GCSImageStorage,
+    storage: "GCSImageStorage",
 ) -> None:
     photos = listing_data.get("raw_photos") or []
     external_id = listing_data.get("external_id") or str(listing.id)
@@ -162,7 +212,7 @@ def _upsert_listing_images(
             )
         except Exception as exc:
             logger.warning("No se pudo subir imagen %s: %s", image_url, exc)
-            stored = StoredImage(
+            stored = StoredImageFallback(
                 source_url=image_url,
                 storage_url=image_url,
                 storage_path=None,
@@ -185,6 +235,36 @@ def _parse_capture_date(value) -> date:
     if isinstance(value, date):
         return value
     return date.fromisoformat(str(value))
+
+
+def build_listing_key(source_name: str, listing_data: dict) -> str:
+    """
+    Crea una llave estable y no nula para deduplicar un anuncio por fuente.
+    Preferimos external_id; si falta, usamos URL canónica sin parámetros de tracking.
+    """
+    external_id = (listing_data.get("external_id") or "").strip()
+    if external_id:
+        raw_key = f"{source_name.lower()}|external|{external_id}"
+    else:
+        raw_key = f"{source_name.lower()}|url|{canonicalize_listing_url(listing_data['url'])}"
+    return hashlib.sha256(raw_key.encode("utf-8")).hexdigest()
+
+
+def canonicalize_listing_url(url: str) -> str:
+    parts = urlsplit(url.strip())
+    query_params = [
+        (key, value)
+        for key, value in parse_qsl(parts.query, keep_blank_values=True)
+        if not key.lower().startswith("utm_")
+        and key.lower() not in {"fbclid", "gclid", "msclkid"}
+    ]
+    return urlunsplit((
+        parts.scheme.lower(),
+        parts.netloc.lower(),
+        parts.path.rstrip("/"),
+        urlencode(sorted(query_params)),
+        "",
+    ))
 
 
 def _default_base_url(source_name: str) -> str:

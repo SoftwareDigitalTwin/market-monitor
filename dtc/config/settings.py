@@ -8,6 +8,8 @@ from pathlib import Path
 from dataclasses import dataclass, field
 from typing import Optional
 
+from sqlalchemy.engine import URL
+
 # Directorio raíz del proyecto
 PROJECT_ROOT = Path(__file__).parent.parent.parent
 try:
@@ -37,17 +39,27 @@ class DatabaseConfig:
 
     @property
     def url(self) -> str:
-        return (
-            f"mysql+{self.driver}://{self.user}:{self.password}"
-            f"@{self.host}:{self.port}/{self.database}?charset=utf8mb4"
-        )
+        return URL.create(
+            drivername=f"mysql+{self.driver}",
+            username=self.user,
+            password=self.password,
+            host=self.host,
+            port=self.port,
+            database=self.database,
+            query={"charset": "utf8mb4"},
+        ).render_as_string(hide_password=False)
 
     @property
     def async_url(self) -> str:
-        return (
-            f"mysql+aiomysql://{self.user}:{self.password}"
-            f"@{self.host}:{self.port}/{self.database}?charset=utf8mb4"
-        )
+        return URL.create(
+            drivername="mysql+aiomysql",
+            username=self.user,
+            password=self.password,
+            host=self.host,
+            port=self.port,
+            database=self.database,
+            query={"charset": "utf8mb4"},
+        ).render_as_string(hide_password=False)
 
 
 @dataclass
