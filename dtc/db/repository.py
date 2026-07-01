@@ -2,9 +2,8 @@
 
 import hashlib
 import logging
-from dataclasses import dataclass
 from datetime import date, datetime
-from typing import TYPE_CHECKING, Optional
+from typing import Optional
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from sqlalchemy import text
@@ -12,19 +11,7 @@ from sqlalchemy.orm import Session
 
 from dtc.db.models import DataSource, ListingImage, RawListing, ScrapingRun
 
-if TYPE_CHECKING:
-    from dtc.storage.gcs import GCSImageStorage
-
 logger = logging.getLogger(__name__)
-
-
-@dataclass
-class StoredImageFallback:
-    source_url: str
-    storage_url: str
-    storage_path: Optional[str]
-    content_type: Optional[str]
-    checksum: Optional[str]
 
 
 RAW_FIELDS = {
@@ -147,7 +134,6 @@ def upsert_raw_listing(
     session: Session,
     source: DataSource,
     listing_data: dict,
-    storage: "GCSImageStorage",
 ) -> bool:
     capture_date = _parse_capture_date(listing_data["capture_date"])
     listing_key = build_listing_key(source.name, listing_data)
@@ -180,7 +166,7 @@ def upsert_raw_listing(
         session.flush()
         inserted = True
 
-    _upsert_listing_images(session, listing, listing_data, storage)
+    _upsert_listing_images(session, listing, listing_data)
     return inserted
 
 
@@ -188,11 +174,8 @@ def _upsert_listing_images(
     session: Session,
     listing: RawListing,
     listing_data: dict,
-    storage: "GCSImageStorage",
 ) -> None:
     photos = listing_data.get("raw_photos") or []
-    external_id = listing_data.get("external_id") or str(listing.id)
-    capture_date = str(listing_data["capture_date"])
 
     for idx, image_url in enumerate(photos):
         exists = session.query(ListingImage).filter_by(
@@ -202,32 +185,14 @@ def _upsert_listing_images(
         if exists:
             continue
 
-        try:
-            stored = storage.store_listing_image(
-                source_name=listing_data["source_name"],
-                external_id=external_id,
-                capture_date=capture_date,
-                image_url=image_url,
-                image_order=idx,
-            )
-        except Exception as exc:
-            logger.warning("No se pudo subir imagen %s: %s", image_url, exc)
-            stored = StoredImageFallback(
-                source_url=image_url,
-                storage_url=image_url,
-                storage_path=None,
-                content_type=None,
-                checksum=None,
-            )
-
         session.add(ListingImage(
             raw_listing_id=listing.id,
-            source_url=stored.source_url,
-            storage_url=stored.storage_url,
-            storage_path=stored.storage_path,
-            content_type=stored.content_type,
+            source_url=image_url,
+            storage_url=image_url,
+            storage_path=None,
+            content_type=None,
             image_order=idx,
-            checksum=stored.checksum,
+            checksum=None,
         ))
 
 

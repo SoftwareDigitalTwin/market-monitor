@@ -34,13 +34,6 @@ services:
       TZ: ${TZ:-America/Guatemala}
       DTC_INIT_DB: "true"
       DTC_API_KEYS: ${DTC_API_KEYS:-change-me-before-production}
-      DTC_STORAGE_BACKEND: ${DTC_STORAGE_BACKEND:-local}
-      DTC_LOCAL_STORAGE_DIR: /app/data/images
-      DTC_LOCAL_STORAGE_PUBLIC_BASE_URL: /media
-      DTC_GCS_BUCKET: ${DTC_GCS_BUCKET:-}
-      DTC_GCS_PREFIX: ${DTC_GCS_PREFIX:-market-monitor}
-      DTC_GCS_PUBLIC_BASE_URL: ${DTC_GCS_PUBLIC_BASE_URL:-}
-      DTC_STORAGE_ENABLED: ${DTC_STORAGE_ENABLED:-false}
       DTC_SAVE_JSON_BACKUP: ${DTC_SAVE_JSON_BACKUP:-true}
     ports:
       - "${DTC_API_PORT:-8000}:8000"
@@ -69,13 +62,6 @@ services:
       DTC_DB_PASSWORD: ${DTC_DB_PASSWORD:-dtc_password}
       TZ: ${TZ:-America/Guatemala}
       DTC_INIT_DB: "false"
-      DTC_STORAGE_BACKEND: ${DTC_STORAGE_BACKEND:-local}
-      DTC_LOCAL_STORAGE_DIR: /app/data/images
-      DTC_LOCAL_STORAGE_PUBLIC_BASE_URL: /media
-      DTC_GCS_BUCKET: ${DTC_GCS_BUCKET:-}
-      DTC_GCS_PREFIX: ${DTC_GCS_PREFIX:-market-monitor}
-      DTC_GCS_PUBLIC_BASE_URL: ${DTC_GCS_PUBLIC_BASE_URL:-}
-      DTC_STORAGE_ENABLED: ${DTC_STORAGE_ENABLED:-false}
       DTC_SAVE_JSON_BACKUP: ${DTC_SAVE_JSON_BACKUP:-true}
       DTC_DAILY_RUN_AT: ${DTC_DAILY_RUN_AT:-03:15}
       DTC_RUN_ON_STARTUP: ${DTC_RUN_ON_STARTUP:-false}

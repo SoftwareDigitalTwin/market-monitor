@@ -4,7 +4,6 @@ from datetime import date
 from typing import Optional
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Query
-from fastapi.responses import FileResponse
 from sqlalchemy import func
 from sqlalchemy.orm import selectinload
 
@@ -13,7 +12,6 @@ from dtc.db.database import get_session
 from dtc.db.models import DataSource, ListingImage, RawListing, ScrapingRun
 
 app = FastAPI(title="DTC Market Monitor API", version="1.0.0")
-config.storage.local_dir.mkdir(parents=True, exist_ok=True)
 
 
 def require_api_key(x_api_key: Optional[str] = Header(default=None, alias="X-API-Key")):
@@ -35,17 +33,6 @@ def health():
 @app.get("/auth/check", dependencies=[Depends(require_api_key)])
 def auth_check():
     return {"authenticated": True}
-
-
-@app.get("/media/{file_path:path}", dependencies=[Depends(require_api_key)])
-def get_media(file_path: str):
-    base_dir = config.storage.local_dir.resolve()
-    target = (base_dir / file_path).resolve()
-    if base_dir not in target.parents and target != base_dir:
-        raise HTTPException(status_code=404, detail="Media not found")
-    if not target.is_file():
-        raise HTTPException(status_code=404, detail="Media not found")
-    return FileResponse(target)
 
 
 @app.get("/sources", dependencies=[Depends(require_api_key)])

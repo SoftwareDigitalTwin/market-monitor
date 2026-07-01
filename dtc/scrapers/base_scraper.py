@@ -30,7 +30,6 @@ from dtc.db.repository import (
     upsert_raw_listing,
 )
 from dtc.normalizer.normalizer import normalize_listing
-from dtc.storage.gcs import GCSImageStorage
 
 logger = logging.getLogger(__name__)
 
@@ -136,22 +135,20 @@ class BaseScraper(ABC):
 
     def _persist_listing(self, listing_data: dict) -> bool:
         """Guarda un anuncio inmediatamente para no perder progreso si el proceso muere."""
-        storage = GCSImageStorage()
         with get_session() as session:
             source = ensure_data_source(session, self.source_name)
-            inserted = upsert_raw_listing(session, source, listing_data, storage)
+            inserted = upsert_raw_listing(session, source, listing_data)
         if inserted:
             self.stats["new_listings"] += 1
         return inserted
 
     def _save_to_db(self) -> int:
         """Guarda anuncios acumulados en MySQL y evita duplicados diarios."""
-        storage = GCSImageStorage()
         inserted = 0
         with get_session() as session:
             source = ensure_data_source(session, self.source_name)
             for listing in self.listings:
-                if upsert_raw_listing(session, source, listing, storage):
+                if upsert_raw_listing(session, source, listing):
                     inserted += 1
         self.stats["new_listings"] = inserted
         logger.info(

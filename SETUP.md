@@ -5,7 +5,7 @@ Esta versión levanta todo con Docker:
 - MySQL 8 con volumen persistente.
 - API FastAPI autenticada con `X-API-Key`.
 - Scheduler diario para correr `python main.py pipeline`.
-- Storage local de fotos en volumen Docker, o GCS si lo activas.
+- Persistencia de metadatos y URLs originales de fotos. No descarga ni guarda imágenes.
 
 ## 1. Configuración
 
@@ -22,25 +22,7 @@ DTC_API_KEYS=una_clave_larga_y_secreta
 DTC_DAILY_RUN_AT=03:15
 ```
 
-Por defecto las fotos se guardan localmente en el volumen `app_data`:
-
-```bash
-DTC_STORAGE_BACKEND=local
-DTC_LOCAL_STORAGE_DIR=/app/data/images
-DTC_LOCAL_STORAGE_PUBLIC_BASE_URL=/media
-```
-
-Para usar GCP Storage:
-
-```bash
-DTC_STORAGE_BACKEND=gcs
-DTC_STORAGE_ENABLED=true
-DTC_GCS_BUCKET=tu-bucket
-DTC_GCS_PREFIX=market-monitor
-GOOGLE_APPLICATION_CREDENTIALS=/app/secrets/service-account.json
-```
-
-Si usas GCS en Docker, monta el JSON de credenciales como volumen o usa credenciales del entorno del servidor.
+Las fotos no se descargan. El sistema conserva las URLs originales del sitio en `raw_photos` y en `listing_images.source_url`.
 
 ## 2. Levantar el stack
 
@@ -94,7 +76,6 @@ Endpoints principales:
 - `GET /listings/{id}`
 - `GET /runs`
 - `GET /analytics/summary`
-- `GET /media/{path}` para fotos locales, también protegido con `X-API-Key`
 
 ## 4. Scheduler diario
 
@@ -125,12 +106,12 @@ docker compose logs -f mysql
 En desarrollo los datos quedan en volúmenes Docker:
 
 - `mysql_data`: base MySQL.
-- `app_data`: logs, JSON de respaldo y fotos locales.
+- `app_data`: logs y JSON de respaldo.
 
 En producción con `docker-compose.prod.yml` quedan en rutas explícitas:
 
 - `/var/lib/market-monitor/mysql`: base MySQL.
-- `/var/lib/market-monitor/data`: logs internos, JSON de respaldo y fotos locales.
+- `/var/lib/market-monitor/data`: logs internos y JSON de respaldo.
 
 No borres esos volúmenes o carpetas si quieres conservar histórico.
 

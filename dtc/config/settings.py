@@ -63,18 +63,6 @@ class DatabaseConfig:
 
 
 @dataclass
-class StorageConfig:
-    """Configuración de almacenamiento para imágenes."""
-    backend: str = os.getenv("DTC_STORAGE_BACKEND", "local").lower()
-    enabled: bool = os.getenv("DTC_STORAGE_ENABLED", "false").lower() == "true"
-    bucket: Optional[str] = os.getenv("DTC_GCS_BUCKET")
-    prefix: str = os.getenv("DTC_GCS_PREFIX", "market-monitor")
-    public_base_url: Optional[str] = os.getenv("DTC_GCS_PUBLIC_BASE_URL")
-    local_dir: Path = Path(os.getenv("DTC_LOCAL_STORAGE_DIR", str(DATA_DIR / "images")))
-    local_public_base_url: str = os.getenv("DTC_LOCAL_STORAGE_PUBLIC_BASE_URL", "/media")
-
-
-@dataclass
 class APIConfig:
     """Configuración de autenticación del API."""
     api_keys_raw: str = os.getenv("DTC_API_KEYS", "")
@@ -115,7 +103,6 @@ class VMUConfig:
 class AppConfig:
     """Configuración principal de la aplicación."""
     db: DatabaseConfig = field(default_factory=DatabaseConfig)
-    storage: StorageConfig = field(default_factory=StorageConfig)
     api: APIConfig = field(default_factory=APIConfig)
     scraper: ScraperConfig = field(default_factory=ScraperConfig)
     vmu: VMUConfig = field(default_factory=VMUConfig)
