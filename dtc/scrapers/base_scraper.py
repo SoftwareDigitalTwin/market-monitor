@@ -58,6 +58,8 @@ class BaseScraper(ABC):
 
     async def start_browser(self):
         """Inicia el navegador Playwright."""
+        if self.playwright or self.browser or self.page:
+            await self.close_browser()
         self.playwright = await async_playwright().start()
         self.browser = await self.playwright.chromium.launch(
             headless=self.config.headless
@@ -73,10 +75,39 @@ class BaseScraper(ABC):
     async def close_browser(self):
         """Cierra el navegador."""
         if self.browser:
-            await self.browser.close()
+            try:
+                if self.browser.is_connected():
+                    await self.browser.close()
+            except Exception as exc:
+                logger.debug("No se pudo cerrar browser limpio: %s", exc)
         if self.playwright:
-            await self.playwright.stop()
+            try:
+                await self.playwright.stop()
+            except Exception as exc:
+                logger.debug("No se pudo detener Playwright limpio: %s", exc)
+        self.page = None
+        self.browser = None
+        self.playwright = None
         logger.info(f"Navegador cerrado para {self.source_name}")
+
+    def _browser_is_alive(self) -> bool:
+        """Indica si Playwright sigue usable para navegar."""
+        if not self.browser or not self.page:
+            return False
+        try:
+            return self.browser.is_connected() and not self.page.is_closed()
+        except Exception:
+            return False
+
+    async def ensure_browser_alive(self):
+        """Reinicia Chromium cuando Playwright queda cerrado a mitad de corrida."""
+        if self._browser_is_alive():
+            return
+        logger.warning(
+            "Navegador no disponible para %s; reiniciando antes de continuar.",
+            self.source_name,
+        )
+        await self.start_browser()
 
     def _start_run(self) -> int:
         """Registra el inicio de una corrida de scraping."""
@@ -187,10 +218,58 @@ class BaseScraper(ABC):
 
     async def get_page_soup(self, url: str) -> BeautifulSoup:
         """Navega a una URL y retorna un BeautifulSoup del HTML."""
+        await self.ensure_browser_alive()
         await self.page.goto(url, wait_until="domcontentloaded")
         await asyncio.sleep(self.config.delay_between_requests)
         html = await self.page.content()
         return BeautifulSoup(html, "html.parser")
+
+    async def _process_listing_url(self, url: str) -> bool:
+        """Parsea y persiste un anuncio con reintentos si el navegador se cae."""
+        last_error: Exception | None = None
+        for attempt in range(1, self.config.max_retries + 1):
+            try:
+                await self.ensure_browser_alive()
+                listing_data = await self.parse_listing(url)
+
+                if listing_data:
+                    listing_data["source_name"] = self.source_name
+                    listing_data["capture_date"] = date.today().isoformat()
+                    listing_data["url"] = url
+                    record = self._add_listing(listing_data)
+                    self._persist_listing(record)
+                    return True
+
+                if not self._browser_is_alive() and attempt < self.config.max_retries:
+                    logger.warning(
+                        "Playwright se cerró procesando %s; reintento %s/%s.",
+                        url,
+                        attempt + 1,
+                        self.config.max_retries,
+                    )
+                    continue
+
+                self._record_error(f"No se pudo parsear {url}")
+                return False
+
+            except Exception as exc:
+                last_error = exc
+                if attempt < self.config.max_retries:
+                    logger.warning(
+                        "Error procesando %s; reintento %s/%s: %s",
+                        url,
+                        attempt + 1,
+                        self.config.max_retries,
+                        exc,
+                    )
+                    if not self._browser_is_alive():
+                        await self.close_browser()
+                    continue
+                break
+
+        self._record_error(f"Error procesando {url}", last_error)
+        logger.error(f"Error procesando {url}: {last_error}")
+        return False
 
     @abstractmethod
     async def get_listing_urls(self) -> list[str]:
@@ -233,15 +312,7 @@ class BaseScraper(ABC):
             for i, url in enumerate(listing_urls, 1):
                 try:
                     logger.info(f"[{i}/{len(listing_urls)}] Procesando: {url}")
-                    listing_data = await self.parse_listing(url)
-
-                    if listing_data:
-                        listing_data["source_name"] = self.source_name
-                        listing_data["capture_date"] = date.today().isoformat()
-                        listing_data["url"] = url
-                        record = self._add_listing(listing_data)
-                        self._persist_listing(record)
-
+                    await self._process_listing_url(url)
                     await asyncio.sleep(self.config.delay_between_pages)
 
                 except Exception as e:

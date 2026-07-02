@@ -82,6 +82,8 @@ class ScraperConfig:
     headless: bool = True
     timeout: int = 30000  # milisegundos
     max_retries: int = 3
+    crautos_max_pages: int = int(os.getenv("DTC_CRAUTOS_MAX_PAGES", "200"))
+    encuentra24_max_pages: int = int(os.getenv("DTC_ENCUENTRA24_MAX_PAGES", "200"))
     delay_between_pages: float = 2.0  # segundos entre páginas
     delay_between_requests: float = 1.0  # segundos entre requests
     user_agent: str = (

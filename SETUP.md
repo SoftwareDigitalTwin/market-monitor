@@ -22,7 +22,7 @@ DTC_API_KEYS=una_clave_larga_y_secreta
 DTC_DAILY_RUN_AT=03:15
 ```
 
-Las fotos no se descargan. El sistema conserva las URLs originales del sitio en `raw_photos` y en `listing_images.source_url`.
+Las fotos no se descargan. El sistema conserva las URLs originales del sitio solo en `raw_photos`.
 
 ## 2. Levantar el stack
 

@@ -52,7 +52,7 @@ class CRAutosScraper(BaseScraper):
         """
         seen: set[str] = set()
         urls: list[str] = []
-        max_pages = 30
+        max_pages = self.config.crautos_max_pages
         empty_pages_in_a_row = 0
         target = self.limit if self.limit else None
 

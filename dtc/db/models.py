@@ -160,7 +160,6 @@ class RawListing(Base):
     # Relaciones
     source = relationship("DataSource", back_populates="raw_listings")
     vmu = relationship("VehicleMarketUnit", back_populates="raw_listings")
-    listing_images = relationship("ListingImage", back_populates="listing")
 
     __table_args__ = (
         UniqueConstraint("source_id", "listing_key", "capture_date", name="uq_source_listing_key_date"),
@@ -271,32 +270,6 @@ class ListingHistory(Base):
         Index("ix_listing_history_vmu", "vmu_id"),
         Index("ix_listing_history_status", "status"),
     )
-
-
-# ─── Listing Images ────────────────────────────────────────────────────────
-
-class ListingImage(Base):
-    """Imagen asociada a un anuncio y, opcionalmente, subida a GCS."""
-    __tablename__ = "listing_images"
-
-    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    raw_listing_id: Mapped[int] = mapped_column(Integer, ForeignKey("raw_listings.id"), nullable=False)
-    source_url: Mapped[str] = mapped_column(String(700), nullable=False)
-    storage_url: Mapped[Optional[str]] = mapped_column(String(1500))
-    storage_path: Mapped[Optional[str]] = mapped_column(String(1000))
-    content_type: Mapped[Optional[str]] = mapped_column(String(100))
-    image_order: Mapped[int] = mapped_column(Integer, default=0)
-    checksum: Mapped[Optional[str]] = mapped_column(String(64))
-    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
-
-    listing = relationship("RawListing", back_populates="listing_images")
-
-    __table_args__ = (
-        UniqueConstraint("raw_listing_id", "source_url", name="uq_listing_image_source"),
-        Index("ix_listing_images_listing", "raw_listing_id"),
-    )
-
-
 # ─── Normalization Map ──────────────────────────────────────────────────────
 
 class NormalizationMap(Base):

@@ -9,7 +9,7 @@ from sqlalchemy.orm import selectinload
 
 from dtc.config.settings import config
 from dtc.db.database import get_session
-from dtc.db.models import DataSource, ListingImage, RawListing, ScrapingRun
+from dtc.db.models import DataSource, RawListing, ScrapingRun
 
 app = FastAPI(title="DTC Market Monitor API", version="1.0.0")
 
@@ -65,7 +65,7 @@ def list_listings(
         query = (
             session.query(RawListing)
             .join(DataSource)
-            .options(selectinload(RawListing.source), selectinload(RawListing.listing_images))
+            .options(selectinload(RawListing.source))
             .order_by(RawListing.capture_date.desc(), RawListing.id.desc())
         )
         if source:
@@ -96,7 +96,7 @@ def get_listing(listing_id: int):
     with get_session() as session:
         listing = (
             session.query(RawListing)
-            .options(selectinload(RawListing.source), selectinload(RawListing.listing_images))
+            .options(selectinload(RawListing.source))
             .filter(RawListing.id == listing_id)
             .first()
         )
@@ -208,18 +208,6 @@ def _listing_summary(listing: RawListing) -> dict:
         "seller_type": listing.norm_seller_type,
         "exterior_color": listing.norm_exterior_color,
         "trim": listing.norm_trim,
-        "images": [_image_payload(image) for image in listing.listing_images],
+        "photos": listing.raw_photos or [],
         "created_at": listing.created_at,
-    }
-
-
-def _image_payload(image: ListingImage) -> dict:
-    return {
-        "id": image.id,
-        "source_url": image.source_url,
-        "storage_url": image.storage_url,
-        "storage_path": image.storage_path,
-        "content_type": image.content_type,
-        "image_order": image.image_order,
-        "checksum": image.checksum,
     }

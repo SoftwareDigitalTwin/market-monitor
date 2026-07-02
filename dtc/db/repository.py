@@ -9,7 +9,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
-from dtc.db.models import DataSource, ListingImage, RawListing, ScrapingRun
+from dtc.db.models import DataSource, RawListing, ScrapingRun
 
 logger = logging.getLogger(__name__)
 
@@ -166,34 +166,7 @@ def upsert_raw_listing(
         session.flush()
         inserted = True
 
-    _upsert_listing_images(session, listing, listing_data)
     return inserted
-
-
-def _upsert_listing_images(
-    session: Session,
-    listing: RawListing,
-    listing_data: dict,
-) -> None:
-    photos = listing_data.get("raw_photos") or []
-
-    for idx, image_url in enumerate(photos):
-        exists = session.query(ListingImage).filter_by(
-            raw_listing_id=listing.id,
-            source_url=image_url,
-        ).first()
-        if exists:
-            continue
-
-        session.add(ListingImage(
-            raw_listing_id=listing.id,
-            source_url=image_url,
-            storage_url=image_url,
-            storage_path=None,
-            content_type=None,
-            image_order=idx,
-            checksum=None,
-        ))
 
 
 def _parse_capture_date(value) -> date:

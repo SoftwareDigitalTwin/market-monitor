@@ -35,6 +35,8 @@ services:
       DTC_INIT_DB: "true"
       DTC_API_KEYS: ${DTC_API_KEYS:-change-me-before-production}
       DTC_SAVE_JSON_BACKUP: ${DTC_SAVE_JSON_BACKUP:-true}
+      DTC_CRAUTOS_MAX_PAGES: ${DTC_CRAUTOS_MAX_PAGES:-200}
+      DTC_ENCUENTRA24_MAX_PAGES: ${DTC_ENCUENTRA24_MAX_PAGES:-200}
     ports:
       - "${DTC_API_PORT:-8000}:8000"
     volumes:
@@ -63,6 +65,8 @@ services:
       TZ: ${TZ:-America/Guatemala}
       DTC_INIT_DB: "false"
       DTC_SAVE_JSON_BACKUP: ${DTC_SAVE_JSON_BACKUP:-true}
+      DTC_CRAUTOS_MAX_PAGES: ${DTC_CRAUTOS_MAX_PAGES:-200}
+      DTC_ENCUENTRA24_MAX_PAGES: ${DTC_ENCUENTRA24_MAX_PAGES:-200}
       DTC_DAILY_RUN_AT: ${DTC_DAILY_RUN_AT:-03:15}
       DTC_RUN_ON_STARTUP: ${DTC_RUN_ON_STARTUP:-false}
     volumes:

@@ -4,9 +4,9 @@ DTC - Sistema de Monitoreo del Mercado de Vehículos Usados (Costa Rica)
 
 Script principal (CLI) para ejecutar los scrapers.
 
-La persistencia usa MySQL y las imágenes pueden subirse a Google Cloud Storage.
-Los scrapers también pueden generar JSON normalizado en data/processed/ como
-respaldo local.
+La persistencia usa MySQL. Las fotos no se descargan; se guardan las URLs
+originales del sitio junto con los metadatos del anuncio. Los scrapers también
+pueden generar JSON normalizado en data/processed/ como respaldo local.
 
 Uso:
     python main.py scrape                    # Ejecuta scraping de todas las fuentes

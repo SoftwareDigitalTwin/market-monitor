@@ -76,7 +76,7 @@ class Encuentra24Scraper(BaseScraper):
         """
         seen: set[str] = set()
         urls: list[str] = []
-        max_pages = 80  # ~1,440 anuncios totales / 20 por pág
+        max_pages = self.config.encuentra24_max_pages
         empty_pages_in_a_row = 0
         # Si hay limit, paramos en cuanto tengamos suficiente.
         target = self.limit if self.limit else None
