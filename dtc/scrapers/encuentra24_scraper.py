@@ -71,15 +71,18 @@ class Encuentra24Scraper(BaseScraper):
 
     async def get_listing_urls(self) -> list[str]:
         """
-        Recorre páginas hasta agotar resultados o llenar el cupo `limit`.
-        E24 usa ?page=N y devuelve ~20 anuncios por página.
+        Recorre el índice de E24 y devuelve un manifiesto liviano de URLs.
+
+        Las ausencias solo pueden aplicarse cuando el final del índice se detecta
+        naturalmente. Si el scan termina por timeout, limit o max_pages se marca
+        parcial y Source Collector V2 no genera bajas.
         """
         seen: set[str] = set()
         urls: list[str] = []
         max_pages = self.config.encuentra24_max_pages
         empty_pages_in_a_row = 0
-        # Si hay limit, paramos en cuanto tengamos suficiente.
         target = self.limit if self.limit else None
+        ended_naturally = False
 
         for page_num in range(1, max_pages + 1):
             search_url = self.build_search_url(page_num)
@@ -87,7 +90,6 @@ class Encuentra24Scraper(BaseScraper):
             try:
                 await self.page.goto(search_url, wait_until="domcontentloaded")
                 await self._wait_for_listings()
-                # Pequeño scroll para gatillar lazy-loads sin ser agresivos.
                 for _ in range(3):
                     await self.page.mouse.wheel(0, 1500)
                     await asyncio.sleep(0.3)
@@ -98,8 +100,10 @@ class Encuentra24Scraper(BaseScraper):
                 )
             except Exception as e:
                 self.stats["errors"] += 1
+                self.discovery_complete = False
+                self.discovery_stop_reason = f"page_error:{page_num}"
                 logger.warning(
-                    f"Timeout/error en pág {page_num}: {e}. Detengo discovery."
+                    f"Timeout/error en pág {page_num}: {e}. Detengo discovery parcial."
                 )
                 try:
                     await self.page.evaluate("window.stop()")
@@ -122,27 +126,41 @@ class Encuentra24Scraper(BaseScraper):
                 if target is not None and len(urls) >= target:
                     break
 
-            logger.info(
-                f"  → {new_in_page} URLs nuevas (acumulado: {len(urls)})"
-            )
+            logger.info(f"  → {new_in_page} URLs nuevas (acumulado: {len(urls)})")
 
             if target is not None and len(urls) >= target:
-                logger.info(f"Cupo de {target} alcanzado, detengo discovery.")
+                self.discovery_complete = False
+                self.discovery_stop_reason = "test_limit"
+                logger.info(f"Cupo de {target} alcanzado; scan parcial de prueba.")
                 break
 
             if new_in_page == 0:
                 empty_pages_in_a_row += 1
                 if empty_pages_in_a_row >= 2:
-                    logger.info(
-                        "Sin URLs nuevas en 2 páginas seguidas. Detengo."
-                    )
+                    ended_naturally = True
+                    self.discovery_stop_reason = "natural_end"
+                    logger.info("Fin natural: 2 páginas consecutivas sin URLs nuevas.")
                     break
             else:
                 empty_pages_in_a_row = 0
 
             await asyncio.sleep(self.config.delay_between_pages)
+        else:
+            self.discovery_complete = False
+            self.discovery_stop_reason = "max_pages_reached"
 
-        logger.info(f"Total de URLs de anuncios encontradas: {len(urls)}")
+        if ended_naturally:
+            self.discovery_complete = True
+        elif self.discovery_stop_reason is None:
+            self.discovery_complete = False
+            self.discovery_stop_reason = "unknown_partial_stop"
+
+        logger.info(
+            "Total URLs E24=%s complete=%s reason=%s",
+            len(urls),
+            self.discovery_complete,
+            self.discovery_stop_reason,
+        )
         return urls
 
     # ─── Detalle ─────────────────────────────────────────────────────────────

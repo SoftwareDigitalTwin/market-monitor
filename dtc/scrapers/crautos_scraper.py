@@ -46,15 +46,18 @@ class CRAutosScraper(BaseScraper):
 
     async def get_listing_urls(self) -> list[str]:
         """
-        Recorre páginas hasta que una no aporte IDs nuevos.
-        CRAutos no expone el total de páginas en el HTML, así que iteramos
-        incrementalmente con un tope de seguridad.
+        Recorre el índice de CRAutos y devuelve un manifiesto liviano de URLs.
+
+        Importante: discovery_complete solo es True cuando el final del índice se
+        detecta de forma natural. Un timeout, un limit o llegar a max_pages produce
+        un scan parcial y bloquea cualquier transición a missing/inactive.
         """
         seen: set[str] = set()
         urls: list[str] = []
         max_pages = self.config.crautos_max_pages
         empty_pages_in_a_row = 0
         target = self.limit if self.limit else None
+        ended_naturally = False
 
         for page_num in range(1, max_pages + 1):
             search_url = self.build_search_url(page_num)
@@ -63,8 +66,11 @@ class CRAutosScraper(BaseScraper):
                 soup = await self.get_page_soup(search_url)
             except Exception as e:
                 self.stats["errors"] += 1
-                logger.warning(f"Timeout/error en pg {page_num}: {e}. Detengo discovery.")
-                # Abortar navegación pendiente para no contaminar el próximo goto
+                self.discovery_complete = False
+                self.discovery_stop_reason = f"page_error:{page_num}"
+                logger.warning(
+                    f"Timeout/error en pg {page_num}: {e}. Detengo discovery parcial."
+                )
                 try:
                     await self.page.evaluate("window.stop()")
                 except Exception:
@@ -93,20 +99,38 @@ class CRAutosScraper(BaseScraper):
             logger.info(f"  → {new_in_page} URLs nuevas (acumulado: {len(urls)})")
 
             if target is not None and len(urls) >= target:
-                logger.info(f"Cupo de {target} alcanzado, detengo discovery.")
+                self.discovery_complete = False
+                self.discovery_stop_reason = "test_limit"
+                logger.info(f"Cupo de {target} alcanzado; scan parcial de prueba.")
                 break
 
             if new_in_page == 0:
                 empty_pages_in_a_row += 1
                 if empty_pages_in_a_row >= 2:
-                    logger.info("Sin URLs nuevas en 2 páginas seguidas. Detengo.")
+                    ended_naturally = True
+                    self.discovery_stop_reason = "natural_end"
+                    logger.info("Fin natural: 2 páginas consecutivas sin URLs nuevas.")
                     break
             else:
                 empty_pages_in_a_row = 0
 
             await asyncio.sleep(self.config.delay_between_pages)
+        else:
+            self.discovery_complete = False
+            self.discovery_stop_reason = "max_pages_reached"
 
-        logger.info(f"Total de URLs de anuncios encontradas: {len(urls)}")
+        if ended_naturally:
+            self.discovery_complete = True
+        elif self.discovery_stop_reason is None:
+            self.discovery_complete = False
+            self.discovery_stop_reason = "unknown_partial_stop"
+
+        logger.info(
+            "Total URLs CRAutos=%s complete=%s reason=%s",
+            len(urls),
+            self.discovery_complete,
+            self.discovery_stop_reason,
+        )
         return urls
 
     async def parse_listing(self, url: str) -> Optional[dict]:

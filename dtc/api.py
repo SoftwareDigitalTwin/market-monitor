@@ -9,7 +9,13 @@ from sqlalchemy.orm import selectinload
 
 from dtc.config.settings import config
 from dtc.db.database import get_session
-from dtc.db.models import DataSource, RawListing, ScrapingRun
+from dtc.db.models import (
+    DataSource,
+    RawListing,
+    ScrapingRun,
+    SourceListing,
+    SourceScanMetric,
+)
 
 app = FastAPI(title="DTC Market Monitor API", version="1.0.0")
 
@@ -152,6 +158,104 @@ def list_runs(limit: int = Query(50, ge=1, le=200)):
                 "error_details": run.error_details,
             }
             for run in runs
+        ]
+
+
+@app.get("/collector/summary", dependencies=[Depends(require_api_key)])
+def collector_summary():
+    with get_session() as session:
+        rows = (
+            session.query(
+                DataSource.name.label("source"),
+                SourceListing.status.label("status"),
+                func.count(SourceListing.id).label("count"),
+            )
+            .join(SourceListing, SourceListing.source_id == DataSource.id)
+            .group_by(DataSource.name, SourceListing.status)
+            .order_by(DataSource.name, SourceListing.status)
+            .all()
+        )
+        return {
+            "by_source_status": [
+                {"source": row.source, "status": row.status, "count": int(row.count)}
+                for row in rows
+            ]
+        }
+
+
+@app.get("/collector/listings", dependencies=[Depends(require_api_key)])
+def collector_listings(
+    source: Optional[str] = None,
+    status: Optional[str] = None,
+    limit: int = Query(100, ge=1, le=500),
+    offset: int = Query(0, ge=0),
+):
+    with get_session() as session:
+        query = (
+            session.query(SourceListing, DataSource.name)
+            .join(DataSource, SourceListing.source_id == DataSource.id)
+            .order_by(SourceListing.last_seen_date.desc(), SourceListing.id.desc())
+        )
+        if source:
+            query = query.filter(DataSource.name == source)
+        if status:
+            query = query.filter(SourceListing.status == status)
+        total = query.count()
+        rows = query.offset(offset).limit(limit).all()
+        return {
+            "total": total,
+            "limit": limit,
+            "offset": offset,
+            "items": [
+                {
+                    "id": listing.id,
+                    "source": source_name,
+                    "external_id": listing.external_id,
+                    "url": listing.canonical_url,
+                    "status": listing.status,
+                    "missing_streak": listing.missing_streak,
+                    "first_seen_date": listing.first_seen_date,
+                    "last_seen_date": listing.last_seen_date,
+                    "inactive_at": listing.inactive_at,
+                    "reappearance_count": listing.reappearance_count,
+                    "detail_last_scraped_date": listing.detail_last_scraped_date,
+                }
+                for listing, source_name in rows
+            ],
+        }
+
+
+@app.get("/collector/runs", dependencies=[Depends(require_api_key)])
+def collector_runs(limit: int = Query(50, ge=1, le=200)):
+    with get_session() as session:
+        rows = (
+            session.query(SourceScanMetric, ScrapingRun, DataSource.name)
+            .join(ScrapingRun, SourceScanMetric.run_id == ScrapingRun.id)
+            .join(DataSource, SourceScanMetric.source_id == DataSource.id)
+            .order_by(ScrapingRun.started_at.desc())
+            .limit(limit)
+            .all()
+        )
+        return [
+            {
+                "run_id": run.id,
+                "source": source_name,
+                "scan_date": metric.scan_date,
+                "run_status": run.status,
+                "discovery_complete": metric.discovery_complete,
+                "safety_passed": metric.safety_passed,
+                "stop_reason": metric.stop_reason,
+                "baseline_active": metric.baseline_active,
+                "seen_count": metric.seen_count,
+                "new_count": metric.new_count,
+                "reappeared_count": metric.reappeared_count,
+                "missing_suspected_count": metric.missing_suspected_count,
+                "inactive_confirmed_count": metric.inactive_confirmed_count,
+                "detail_scraped_count": metric.detail_scraped_count,
+                "started_at": run.started_at,
+                "finished_at": run.finished_at,
+            }
+            for metric, run, source_name in rows
         ]
 
 

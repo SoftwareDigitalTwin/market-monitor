@@ -1,164 +1,185 @@
 #!/usr/bin/env python3
 """
-DTC - Sistema de Monitoreo del Mercado de Vehículos Usados (Costa Rica)
-
-Script principal (CLI) para ejecutar los scrapers.
-
-La persistencia usa MySQL. Las fotos no se descargan; se guardan las URLs
-originales del sitio junto con los metadatos del anuncio. Los scrapers también
-pueden generar JSON normalizado en data/processed/ como respaldo local.
+DTC Market Monitor - Source Collector V2.
 
 Uso:
-    python main.py scrape                    # Ejecuta scraping de todas las fuentes
-    python main.py scrape crautos            # Solo CRAutos
-    python main.py scrape crautos --limit 5  # Solo los primeros 5 anuncios
-    python main.py scrape encuentra24        # Solo Encuentra24
-    python main.py pipeline                  # Ejecución diaria recomendada
-    python main.py init                      # Crea tablas y fuentes iniciales
-    python main.py summary                   # Resumen básico de datos
+    python main.py init
+    python main.py collect
+    python main.py collect CRAutos
+    python main.py collect Encuentra24
+    python main.py collect CRAutos --limit 20
+    python main.py pipeline
+    python main.py summary
+
+"scrape" se mantiene como alias de "collect" para compatibilidad operativa.
 """
 
-import sys
+from __future__ import annotations
+
 import asyncio
 import logging
+import sys
 from datetime import date
 
 from dtc.utils.logger import setup_logging
-from dtc.config.settings import config
 
 logger = logging.getLogger(__name__)
 
 
-def cmd_init():
-    """Inicializa la base de datos y las fuentes de datos."""
+def cmd_init() -> None:
     from dtc.db.database import init_db, seed_data_sources
+
     logger.info("Inicializando base de datos...")
     init_db()
     seed_data_sources()
     logger.info("Inicialización completada.")
 
 
-def cmd_summary():
-    """Muestra un resumen básico del mercado capturado."""
+def cmd_summary() -> None:
     from sqlalchemy import func
+
     from dtc.db.database import get_session
-    from dtc.db.models import DataSource, RawListing, ScrapingRun
+    from dtc.db.models import (
+        DataSource,
+        RawListing,
+        ScrapingRun,
+        SourceListing,
+        SourceScanMetric,
+    )
 
     with get_session() as session:
-        total = session.query(RawListing).count()
+        total_raw = session.query(RawListing).count()
         latest_date = session.query(func.max(RawListing.capture_date)).scalar()
+
         by_source = (
-            session.query(DataSource.name, func.count(RawListing.id))
-            .join(RawListing)
-            .group_by(DataSource.name)
+            session.query(DataSource.name, func.count(SourceListing.id))
+            .outerjoin(SourceListing)
+            .group_by(DataSource.id, DataSource.name)
+            .order_by(DataSource.id)
             .all()
         )
+
+        by_status = (
+            session.query(
+                DataSource.name,
+                SourceListing.status,
+                func.count(SourceListing.id),
+            )
+            .join(SourceListing, SourceListing.source_id == DataSource.id)
+            .group_by(DataSource.name, SourceListing.status)
+            .order_by(DataSource.name, SourceListing.status)
+            .all()
+        )
+
         latest_runs = (
-            session.query(ScrapingRun, DataSource.name)
-            .join(DataSource)
+            session.query(ScrapingRun, DataSource.name, SourceScanMetric)
+            .join(DataSource, ScrapingRun.source_id == DataSource.id)
+            .outerjoin(SourceScanMetric, SourceScanMetric.run_id == ScrapingRun.id)
             .order_by(ScrapingRun.started_at.desc())
-            .limit(5)
+            .limit(10)
             .all()
         )
 
-    print(f"Total anuncios: {total}")
-    print(f"Última captura: {latest_date}")
-    print("Por fuente:")
-    for source, count in by_source:
-        print(f"  - {source}: {count}")
-    print("Últimas corridas:")
-    for run, source in latest_runs:
-        print(
-            f"  - {run.id} {source} {run.run_date} "
-            f"{run.status} nuevos={run.new_listings} errores={run.errors}"
-        )
+        print(f"Raw listings: {total_raw}")
+        print(f"Última captura de detalle: {latest_date}")
+        print("\nSource listings por fuente:")
+        for source_name, count in by_source:
+            print(f"  - {source_name}: {count}")
+
+        print("\nEstados de presencia:")
+        for source_name, status, count in by_status:
+            print(f"  - {source_name} / {status}: {count}")
+
+        print("\nÚltimas corridas:")
+        for run, source_name, metric in latest_runs:
+            suffix = ""
+            if metric:
+                suffix = (
+                    f" seen={metric.seen_count} new={metric.new_count} "
+                    f"reappeared={metric.reappeared_count} "
+                    f"missing={metric.missing_suspected_count} "
+                    f"inactive={metric.inactive_confirmed_count} "
+                    f"safety={metric.safety_passed}"
+                )
+            print(
+                f"  - run={run.id} {source_name} {run.run_date} "
+                f"status={run.status}{suffix}"
+            )
 
 
-def cmd_scrape(source_name: str = None, limit: int = None):
-    """Ejecuta el scraping de una o todas las fuentes y vuelca a JSON."""
+def cmd_collect(source_name: str | None = None, limit: int | None = None) -> None:
+    from dtc.scrapers.registry import get_active_scraper_classes
 
-    async def _run_scraper(scraper_class):
-        scraper = scraper_class(limit=limit) if limit else scraper_class()
-        await scraper.run()
+    specs = get_active_scraper_classes(source_name)
+    if not specs:
+        logger.warning("No hay fuentes activas configuradas.")
+        return
 
-    if source_name is None or source_name.lower() == "crautos":
-        from dtc.scrapers.crautos_scraper import CRAutosScraper
+    for configured_name, scraper_class in specs:
         logger.info(
-            f"Iniciando scraping de CRAutos"
-            + (f" (limit={limit})..." if limit else "...")
+            "Iniciando Source Collector V2 para %s%s",
+            configured_name,
+            f" (limit={limit})" if limit else "",
         )
-        asyncio.run(_run_scraper(CRAutosScraper))
-
-    if source_name is None or source_name.lower() == "encuentra24":
-        from dtc.scrapers.encuentra24_scraper import Encuentra24Scraper
-        logger.info(
-            f"Iniciando scraping de Encuentra24"
-            + (f" (limit={limit})..." if limit else "...")
-        )
-        asyncio.run(_run_scraper(Encuentra24Scraper))
+        scraper = scraper_class(limit=limit) if limit is not None else scraper_class()
+        asyncio.run(scraper.run())
 
 
-def cmd_pipeline():
-    """Pipeline diario: scraping + normalización + persistencia."""
-    logger.info("=" * 60)
-    logger.info(f"PIPELINE DIARIO - {date.today()}")
-    logger.info("=" * 60)
-
-    try:
-        cmd_scrape()
-        logger.info("Scraping y persistencia completados.")
-    except Exception as e:
-        logger.error(f"Error en pipeline: {e}")
-
-    logger.info("=" * 60)
+def cmd_pipeline() -> None:
+    logger.info("=" * 70)
+    logger.info("PIPELINE DIARIO SOURCE COLLECTOR V2 - %s", date.today())
+    logger.info("=" * 70)
+    cmd_collect()
     logger.info("PIPELINE FINALIZADO")
-    logger.info("=" * 60)
 
 
-def main():
-    """Punto de entrada principal."""
-    setup_logging()
-
-    if len(sys.argv) < 2:
+def _parse_cli(argv: list[str]) -> tuple[str, str | None, int | None]:
+    if len(argv) < 2:
         print(__doc__)
-        sys.exit(1)
+        raise SystemExit(1)
 
-    command = sys.argv[1].lower()
-    args = sys.argv[2:] if len(sys.argv) > 2 else []
+    command = argv[1].lower()
+    args = argv[2:]
+    limit: int | None = None
 
-    # Soporte simple para --limit N en cualquier posición de los args
-    limit = None
     if "--limit" in args:
-        idx = args.index("--limit")
+        index = args.index("--limit")
         try:
-            limit = int(args[idx + 1])
+            limit = int(args[index + 1])
         except (IndexError, ValueError):
             print("--limit requiere un entero")
-            sys.exit(1)
-        args = args[:idx] + args[idx + 2:]
+            raise SystemExit(1)
+        args = args[:index] + args[index + 2 :]
 
-    source_arg = args[0] if args else None
+    source_name = args[0] if args else None
+    return command, source_name, limit
+
+
+def main() -> None:
+    setup_logging()
+    command, source_name, limit = _parse_cli(sys.argv)
 
     commands = {
         "init": cmd_init,
-        "scrape": lambda: cmd_scrape(source_arg, limit=limit),
+        "collect": lambda: cmd_collect(source_name, limit),
+        "scrape": lambda: cmd_collect(source_name, limit),
         "pipeline": cmd_pipeline,
         "summary": cmd_summary,
     }
 
     if command not in commands:
-        print(f"Comando desconocido: '{command}'")
-        print(f"Comandos disponibles: {', '.join(commands.keys())}")
-        sys.exit(1)
+        print(f"Comando desconocido: {command}")
+        print(f"Disponibles: {', '.join(commands)}")
+        raise SystemExit(1)
 
     try:
         commands[command]()
     except KeyboardInterrupt:
-        logger.info("\nProceso interrumpido por el usuario.")
-        sys.exit(0)
-    except Exception as e:
-        logger.error(f"Error fatal: {e}", exc_info=True)
-        sys.exit(1)
+        logger.info("Proceso interrumpido por el usuario.")
+        raise SystemExit(0)
+    except Exception as exc:
+        logger.error("Error fatal: %s", exc, exc_info=True)
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

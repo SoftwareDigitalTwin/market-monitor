@@ -130,11 +130,12 @@ def release_source_lock(session: Session, source_name: str) -> None:
     )
 
 
-def upsert_raw_listing(
+def upsert_raw_listing_record(
     session: Session,
     source: DataSource,
     listing_data: dict,
-) -> bool:
+) -> tuple[RawListing, bool]:
+    """Retorna (registro, inserted) manteniendo compatibilidad con el flujo legado."""
     capture_date = _parse_capture_date(listing_data["capture_date"])
     listing_key = build_listing_key(source.name, listing_data)
 
@@ -153,7 +154,9 @@ def upsert_raw_listing(
     payload["source_id"] = source.id
     payload["capture_date"] = capture_date
     payload["listing_key"] = listing_key
-    payload["is_normalized"] = bool(listing_data.get("norm_brand") or listing_data.get("norm_model"))
+    payload["is_normalized"] = bool(
+        listing_data.get("norm_brand") or listing_data.get("norm_model")
+    )
 
     if existing:
         for key, value in payload.items():
@@ -166,6 +169,15 @@ def upsert_raw_listing(
         session.flush()
         inserted = True
 
+    return listing, inserted
+
+
+def upsert_raw_listing(
+    session: Session,
+    source: DataSource,
+    listing_data: dict,
+) -> bool:
+    _, inserted = upsert_raw_listing_record(session, source, listing_data)
     return inserted
 
 

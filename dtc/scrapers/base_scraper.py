@@ -1,33 +1,44 @@
 """
-Clase base para todos los agentes de scraping.
-Define la interfaz común y funcionalidades compartidas.
+BaseScraper V2.
 
-Los scrapers acumulan los anuncios en memoria, los normalizan, los guardan en
-MySQL de forma idempotente y opcionalmente escriben un JSON de respaldo.
+Separa explícitamente:
+- discovery/presence: recorrer índices y obtener referencias livianas;
+- detail scrape: abrir únicamente anuncios nuevos o que reaparecen;
+- lifecycle de fuente: reconciliar presencia con guardas de seguridad.
 """
 
+from __future__ import annotations
+
+import asyncio
 import json
 import logging
-import asyncio
 from abc import ABC, abstractmethod
 from datetime import date
 from types import SimpleNamespace
 from typing import Optional
 
-from playwright.async_api import async_playwright, Page, Browser
 from bs4 import BeautifulSoup
+from playwright.async_api import Browser, Page, async_playwright
 
-from dtc.config.settings import config, PROCESSED_DIR
+from dtc.collector.service import (
+    bootstrap_source_listings_from_raw,
+    mark_detail_scraped,
+    reconcile_manifest,
+    update_scan_detail_count,
+)
+from dtc.collector.types import ListingRef
+from dtc.config.settings import PROCESSED_DIR, config
 from dtc.db.database import SessionLocal, get_session
 from dtc.db.models import ScrapingRun
 from dtc.db.repository import (
     acquire_source_lock,
+    build_listing_key,
     ensure_data_source,
     finish_scraping_run,
     mark_abandoned_runs,
     release_source_lock,
     start_scraping_run,
-    upsert_raw_listing,
+    upsert_raw_listing_record,
 )
 from dtc.normalizer.normalizer import normalize_listing
 
@@ -35,7 +46,7 @@ logger = logging.getLogger(__name__)
 
 
 class BaseScraper(ABC):
-    """Clase base abstracta para scrapers de portales de vehículos."""
+    """Clase base para cualquier fuente de anuncios automotrices."""
 
     def __init__(self, source_name: str, limit: Optional[int] = None):
         self.source_name = source_name
@@ -46,18 +57,27 @@ class BaseScraper(ABC):
         self.lock_acquired = False
         self.lock_session = None
         self.config = config.scraper
-        self.limit = limit  # opcional: tope de anuncios a parsear
+        self.limit = limit
         self.listings: list[dict] = []
         self.error_messages: list[str] = []
+
+        # Las implementaciones de discovery deben cambiar estos valores cuando
+        # terminan por timeout, límite o max_pages, para impedir falsas salidas.
+        self.discovery_complete = True
+        self.discovery_stop_reason: str | None = None
+
         self.stats = {
             "total_pages": 0,
             "total_listings": 0,
             "new_listings": 0,
+            "reappeared_listings": 0,
+            "missing_suspected": 0,
+            "inactive_confirmed": 0,
+            "detail_scraped": 0,
             "errors": 0,
         }
 
     async def start_browser(self):
-        """Inicia el navegador Playwright."""
         if self.playwright or self.browser or self.page:
             await self.close_browser()
         self.playwright = await async_playwright().start()
@@ -70,10 +90,9 @@ class BaseScraper(ABC):
         )
         self.page = await context.new_page()
         self.page.set_default_timeout(self.config.timeout)
-        logger.info(f"Navegador iniciado para {self.source_name}")
+        logger.info("Navegador iniciado para %s", self.source_name)
 
     async def close_browser(self):
-        """Cierra el navegador."""
         if self.browser:
             try:
                 if self.browser.is_connected():
@@ -88,10 +107,9 @@ class BaseScraper(ABC):
         self.page = None
         self.browser = None
         self.playwright = None
-        logger.info(f"Navegador cerrado para {self.source_name}")
+        logger.info("Navegador cerrado para %s", self.source_name)
 
     def _browser_is_alive(self) -> bool:
-        """Indica si Playwright sigue usable para navegar."""
         if not self.browser or not self.page:
             return False
         try:
@@ -100,17 +118,14 @@ class BaseScraper(ABC):
             return False
 
     async def ensure_browser_alive(self):
-        """Reinicia Chromium cuando Playwright queda cerrado a mitad de corrida."""
         if self._browser_is_alive():
             return
         logger.warning(
-            "Navegador no disponible para %s; reiniciando antes de continuar.",
-            self.source_name,
+            "Navegador no disponible para %s; reiniciando.", self.source_name
         )
         await self.start_browser()
 
     def _start_run(self) -> int:
-        """Registra el inicio de una corrida de scraping."""
         self.lock_session = SessionLocal()
         if not acquire_source_lock(self.lock_session, self.source_name):
             self.lock_session.close()
@@ -123,6 +138,7 @@ class BaseScraper(ABC):
 
         with get_session() as session:
             source = ensure_data_source(session, self.source_name)
+            bootstrap_source_listings_from_raw(session, source)
             abandoned = mark_abandoned_runs(session, source)
             if abandoned:
                 logger.warning(
@@ -132,32 +148,38 @@ class BaseScraper(ABC):
                 )
             run = start_scraping_run(session, source)
             run_id = run.id
+
         self.scraping_run_id = run_id
-        logger.info(f"Corrida de scraping iniciada: ID={run_id}")
+        logger.info("Corrida iniciada: ID=%s", run_id)
         return run_id
 
     def _finish_run(self, status: str = "completed", error_details: str = None):
-        """Registra el fin de una corrida de scraping."""
         if not self.scraping_run_id:
             return
         with get_session() as session:
             run = session.get(ScrapingRun, self.scraping_run_id)
             if run:
                 finish_scraping_run(session, run, self.stats, status, error_details)
+
         logger.info(
-            f"Corrida finalizada: {status} | "
-            f"Páginas: {self.stats['total_pages']} | "
-            f"Anuncios: {self.stats['total_listings']} | "
-            f"Nuevos: {self.stats['new_listings']} | "
-            f"Errores: {self.stats['errors']}"
+            "Corrida finalizada: %s | páginas=%s vistos=%s nuevos=%s "
+            "reaparecidos=%s missing=%s inactivos=%s detalle=%s errores=%s",
+            status,
+            self.stats["total_pages"],
+            self.stats["total_listings"],
+            self.stats["new_listings"],
+            self.stats["reappeared_listings"],
+            self.stats["missing_suspected"],
+            self.stats["inactive_confirmed"],
+            self.stats["detail_scraped"],
+            self.stats["errors"],
         )
 
-    def _add_listing(self, listing_data: dict):
-        """Normaliza un anuncio y lo acumula en memoria."""
+    def _add_listing(self, listing_data: dict) -> dict:
         try:
             normalized = normalize_listing(SimpleNamespace(**listing_data))
-        except Exception as e:
-            logger.error(f"Error normalizando anuncio: {e}")
+        except Exception as exc:
+            logger.error("Error normalizando anuncio: %s", exc)
             normalized = {}
 
         record = {**listing_data, **normalized}
@@ -165,29 +187,20 @@ class BaseScraper(ABC):
         return record
 
     def _persist_listing(self, listing_data: dict) -> bool:
-        """Guarda un anuncio inmediatamente para no perder progreso si el proceso muere."""
+        """Persiste el detalle y enlaza el snapshot con SourceListing."""
         with get_session() as session:
             source = ensure_data_source(session, self.source_name)
-            inserted = upsert_raw_listing(session, source, listing_data)
-        if inserted:
-            self.stats["new_listings"] += 1
-        return inserted
-
-    def _save_to_db(self) -> int:
-        """Guarda anuncios acumulados en MySQL y evita duplicados diarios."""
-        inserted = 0
-        with get_session() as session:
-            source = ensure_data_source(session, self.source_name)
-            for listing in self.listings:
-                if upsert_raw_listing(session, source, listing):
-                    inserted += 1
-        self.stats["new_listings"] = inserted
-        logger.info(
-            "DB actualizada para %s: %s nuevos / %s procesados",
-            self.source_name,
-            inserted,
-            len(self.listings),
-        )
+            raw_listing, inserted = upsert_raw_listing_record(
+                session, source, listing_data
+            )
+            listing_key = build_listing_key(self.source_name, listing_data)
+            mark_detail_scraped(
+                session,
+                source_id=source.id,
+                listing_key=listing_key,
+                raw_listing_id=raw_listing.id,
+                scraped_date=date.today(),
+            )
         return inserted
 
     def _record_error(self, message: str, exc: Exception = None):
@@ -196,68 +209,74 @@ class BaseScraper(ABC):
         self.error_messages.append(detail[:1000])
 
     def _save_to_json(self) -> str:
-        """Escribe los anuncios acumulados en un archivo JSON."""
+        """Backup solo de detalles procesados; no del manifiesto completo."""
         PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
         today = date.today().isoformat()
         filename = PROCESSED_DIR / f"{self.source_name.lower()}_{today}.json"
-
         payload = {
             "source": self.source_name,
             "capture_date": today,
             "stats": self.stats,
             "listings": self.listings,
         }
-
-        with open(filename, "w", encoding="utf-8") as f:
-            json.dump(payload, f, ensure_ascii=False, indent=2, default=str)
-
-        logger.info(
-            f"JSON guardado en {filename} ({len(self.listings)} anuncios)"
-        )
+        with open(filename, "w", encoding="utf-8") as file:
+            json.dump(payload, file, ensure_ascii=False, indent=2, default=str)
+        logger.info("JSON guardado en %s (%s detalles)", filename, len(self.listings))
         return str(filename)
 
     async def get_page_soup(self, url: str) -> BeautifulSoup:
-        """Navega a una URL y retorna un BeautifulSoup del HTML."""
         await self.ensure_browser_alive()
         await self.page.goto(url, wait_until="domcontentloaded")
         await asyncio.sleep(self.config.delay_between_requests)
         html = await self.page.content()
         return BeautifulSoup(html, "html.parser")
 
-    async def _process_listing_url(self, url: str) -> bool:
-        """Parsea y persiste un anuncio con reintentos si el navegador se cae."""
+    def extract_external_id(self, url: str) -> str | None:
+        """
+        Hook genérico. Las fuentes actuales ya implementan _extract_external_id.
+        Fuentes futuras pueden sobrescribir este método directamente.
+        """
+        extractor = getattr(self, "_extract_external_id", None)
+        if callable(extractor):
+            return extractor(url)
+        return None
+
+    def make_listing_ref(self, url: str) -> ListingRef:
+        external_id = self.extract_external_id(url)
+        key = build_listing_key(
+            self.source_name,
+            {"external_id": external_id, "url": url},
+        )
+        return ListingRef(listing_key=key, url=url, external_id=external_id)
+
+    async def _process_listing_ref(self, ref: ListingRef) -> bool:
         last_error: Exception | None = None
         for attempt in range(1, self.config.max_retries + 1):
             try:
                 await self.ensure_browser_alive()
-                listing_data = await self.parse_listing(url)
-
+                listing_data = await self.parse_listing(ref.url)
                 if listing_data:
                     listing_data["source_name"] = self.source_name
                     listing_data["capture_date"] = date.today().isoformat()
-                    listing_data["url"] = url
+                    listing_data["url"] = ref.url
+                    listing_data["external_id"] = (
+                        listing_data.get("external_id") or ref.external_id
+                    )
                     record = self._add_listing(listing_data)
                     self._persist_listing(record)
+                    self.stats["detail_scraped"] += 1
                     return True
 
                 if not self._browser_is_alive() and attempt < self.config.max_retries:
-                    logger.warning(
-                        "Playwright se cerró procesando %s; reintento %s/%s.",
-                        url,
-                        attempt + 1,
-                        self.config.max_retries,
-                    )
                     continue
-
-                self._record_error(f"No se pudo parsear {url}")
+                self._record_error(f"No se pudo parsear {ref.url}")
                 return False
-
             except Exception as exc:
                 last_error = exc
                 if attempt < self.config.max_retries:
                     logger.warning(
                         "Error procesando %s; reintento %s/%s: %s",
-                        url,
+                        ref.url,
                         attempt + 1,
                         self.config.max_retries,
                         exc,
@@ -267,81 +286,113 @@ class BaseScraper(ABC):
                     continue
                 break
 
-        self._record_error(f"Error procesando {url}", last_error)
-        logger.error(f"Error procesando {url}: {last_error}")
+        self._record_error(f"Error procesando {ref.url}", last_error)
         return False
 
     @abstractmethod
     async def get_listing_urls(self) -> list[str]:
-        """Obtiene las URLs de todos los anuncios disponibles."""
-        pass
+        """Obtiene referencias livianas de los anuncios visibles en la fuente."""
+        raise NotImplementedError
 
     @abstractmethod
     async def parse_listing(self, url: str) -> Optional[dict]:
-        """Extrae los datos de un anuncio individual."""
-        pass
+        """Extrae el detalle de un anuncio individual."""
+        raise NotImplementedError
 
     @abstractmethod
     def build_search_url(self, page_number: int) -> str:
-        """Construye la URL de búsqueda para una página específica."""
-        pass
+        raise NotImplementedError
 
     async def run(self):
         """
-        Ejecuta el proceso completo de scraping.
-        1. Inicia navegador
-        2. Recorre páginas de resultados
-        3. Extrae datos de cada anuncio
-        4. Normaliza, persiste en DB y opcionalmente vuelca a JSON
+        Collector V2:
+        1. index scan completo;
+        2. reconciliación de presencia;
+        3. detalle solo para nuevos y reaparecidos;
+        4. ausencias solo si el scan es completo y supera safety guards.
         """
         self._start_run()
 
         try:
             await self.start_browser()
-
-            # Obtener todas las URLs de anuncios
-            logger.info(f"Obteniendo listado de anuncios de {self.source_name}...")
+            logger.info("Discovery de %s...", self.source_name)
             listing_urls = await self.get_listing_urls()
+
+            # Cualquier limit de prueba convierte el scan en parcial por definición.
             if self.limit is not None:
                 listing_urls = listing_urls[: self.limit]
-                logger.info(f"Limitando a los primeros {self.limit} anuncios.")
-            self.stats["total_listings"] = len(listing_urls)
-            logger.info(f"Se encontraron {len(listing_urls)} anuncios.")
+                self.discovery_complete = False
+                self.discovery_stop_reason = "test_limit"
 
-            # Procesar cada anuncio
-            for i, url in enumerate(listing_urls, 1):
-                try:
-                    logger.info(f"[{i}/{len(listing_urls)}] Procesando: {url}")
-                    await self._process_listing_url(url)
-                    await asyncio.sleep(self.config.delay_between_pages)
+            refs = [self.make_listing_ref(url) for url in listing_urls]
+            refs = list({ref.listing_key: ref for ref in refs}.values())
+            self.stats["total_listings"] = len(refs)
 
-                except Exception as e:
-                    self._record_error(f"Error procesando {url}", e)
-                    logger.error(f"Error procesando {url}: {e}")
-                    continue
+            with get_session() as session:
+                source = ensure_data_source(session, self.source_name)
+                run = session.get(ScrapingRun, self.scraping_run_id)
+                resolution = reconcile_manifest(
+                    session,
+                    source=source,
+                    run=run,
+                    refs=refs,
+                    scan_date=date.today(),
+                    discovery_complete=self.discovery_complete,
+                    stop_reason=self.discovery_stop_reason,
+                )
 
-            if config.save_json_backup:
-                self._save_to_json()
-            status = "completed"
-            error_details = "\n".join(self.error_messages[-10:]) or None
-            if self.stats["errors"] and not self.listings:
-                status = "failed"
-                error_details = error_details or "La corrida terminó sin anuncios y con errores."
-            self._finish_run(status=status, error_details=error_details)
+            self.stats["new_listings"] = len(resolution.new_refs)
+            self.stats["reappeared_listings"] = len(resolution.reappeared_refs)
+            self.stats["missing_suspected"] = resolution.missing_suspected_count
+            self.stats["inactive_confirmed"] = resolution.inactive_confirmed_count
+
+            all_detail_refs = resolution.detail_refs
+            detail_cap = config.collector.max_detail_scrapes_per_run
+            detail_refs = all_detail_refs[:detail_cap] if detail_cap > 0 else all_detail_refs
             logger.info(
-                f"Scraping de {self.source_name} finalizado | "
-                f"Páginas: {self.stats['total_pages']} | "
-                f"Anuncios: {self.stats['total_listings']} | "
-                f"Guardados: {self.stats['new_listings']} | "
-                f"Errores: {self.stats['errors']}"
+                "%s: vistos=%s nuevos=%s reaparecidos=%s pendientes_detalle=%s "
+                "detalle_esta_corrida=%s",
+                self.source_name,
+                resolution.seen_count,
+                len(resolution.new_refs),
+                len(resolution.reappeared_refs),
+                len(all_detail_refs),
+                len(detail_refs),
             )
 
-        except Exception as e:
-            self._record_error("Error fatal en scraping", e)
-            self._finish_run(status="failed", error_details=str(e))
-            logger.error(f"Error fatal en scraping de {self.source_name}: {e}")
-            raise
+            for index, ref in enumerate(detail_refs, 1):
+                logger.info("[%s/%s] Detalle: %s", index, len(detail_refs), ref.url)
+                await self._process_listing_ref(ref)
+                await asyncio.sleep(self.config.delay_between_requests)
 
+            with get_session() as session:
+                update_scan_detail_count(
+                    session,
+                    self.scraping_run_id,
+                    self.stats["detail_scraped"],
+                )
+
+            if config.save_json_backup and self.listings:
+                self._save_to_json()
+
+            status = "completed" if self.discovery_complete else "partial"
+            error_details = "\n".join(self.error_messages[-10:]) or None
+            if not self.discovery_complete:
+                reason = self.discovery_stop_reason or "discovery_incomplete"
+                error_details = f"Discovery parcial: {reason}" + (
+                    f"\n{error_details}" if error_details else ""
+                )
+            if self.stats["errors"] and not refs:
+                status = "failed"
+                error_details = error_details or "La corrida terminó sin referencias y con errores."
+
+            self._finish_run(status=status, error_details=error_details)
+
+        except Exception as exc:
+            self._record_error("Error fatal en collector", exc)
+            self._finish_run(status="failed", error_details=str(exc))
+            logger.error("Error fatal en %s: %s", self.source_name, exc)
+            raise
         finally:
             try:
                 await self.close_browser()

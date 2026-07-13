@@ -84,6 +84,20 @@ class VMUStatus(str, enum.Enum):
     VENDIDO = "vendido"  # salió del mercado
 
 
+class SourceListingStatus(str, enum.Enum):
+    ACTIVE = "active"
+    MISSING_SUSPECTED = "missing_suspected"
+    INACTIVE_CONFIRMED = "inactive_confirmed"
+
+
+class SourceListingEventType(str, enum.Enum):
+    FIRST_SEEN = "first_seen"
+    MISSING_SUSPECTED = "missing_suspected"
+    INACTIVE_CONFIRMED = "inactive_confirmed"
+    REAPPEARED = "reappeared"
+    URL_CHANGED = "url_changed"
+
+
 # ─── DataSource ──────────────────────────────────────────────────────────────
 
 class DataSource(Base):
@@ -104,6 +118,7 @@ class DataSource(Base):
     raw_listings = relationship("RawListing", back_populates="source")
     listing_histories = relationship("ListingHistory", back_populates="source")
     scraping_runs = relationship("ScrapingRun", back_populates="source")
+    source_listings = relationship("SourceListing", back_populates="source")
 
 
 # ─── RawListing ──────────────────────────────────────────────────────────────
@@ -168,6 +183,114 @@ class RawListing(Base):
         Index("ix_raw_listings_capture_date", "capture_date"),
         Index("ix_raw_listings_norm_brand_model", "norm_brand", "norm_model"),
         Index("ix_raw_listings_not_matched", "is_matched"),
+    )
+
+
+# ─── Source Collector V2 ────────────────────────────────────────────────────
+
+class SourceListing(Base):
+    """
+    Identidad persistente de un anuncio dentro de una fuente.
+
+    A diferencia de RawListing, esta tabla NO crea una fila por día. Mantiene el
+    estado actual de presencia del anuncio y permite detectar desapariciones y
+    reapariciones sin volver a scrapear el detalle completo.
+    """
+    __tablename__ = "source_listings"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    source_id: Mapped[int] = mapped_column(
+        Integer, ForeignKey("data_sources.id"), nullable=False
+    )
+    listing_key: Mapped[str] = mapped_column(String(64), nullable=False)
+    external_id: Mapped[Optional[str]] = mapped_column(String(200))
+    canonical_url: Mapped[str] = mapped_column(String(1000), nullable=False)
+
+    status: Mapped[str] = mapped_column(
+        String(30), default=SourceListingStatus.ACTIVE.value, nullable=False
+    )
+    missing_streak: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    reappearance_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+
+    first_seen_date: Mapped[date] = mapped_column(Date, nullable=False)
+    last_seen_date: Mapped[date] = mapped_column(Date, nullable=False)
+    inactive_at: Mapped[Optional[date]] = mapped_column(Date)
+    detail_last_scraped_date: Mapped[Optional[date]] = mapped_column(Date)
+
+    last_seen_run_id: Mapped[Optional[int]] = mapped_column(
+        Integer, ForeignKey("scraping_runs.id")
+    )
+    latest_raw_listing_id: Mapped[Optional[int]] = mapped_column(
+        Integer, ForeignKey("raw_listings.id")
+    )
+
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime, server_default=func.now(), onupdate=func.now()
+    )
+
+    source = relationship("DataSource", back_populates="source_listings")
+
+    __table_args__ = (
+        UniqueConstraint("source_id", "listing_key", name="uq_source_listing_key"),
+        Index("ix_source_listing_status", "source_id", "status"),
+        Index("ix_source_listing_last_seen", "source_id", "last_seen_date"),
+        Index("ix_source_listing_external_id", "source_id", "external_id"),
+        Index("ix_source_listing_last_seen_run", "source_id", "last_seen_run_id"),
+    )
+
+
+class SourceListingEvent(Base):
+    """Solo registra transiciones relevantes; no una fila por anuncio por día."""
+    __tablename__ = "source_listing_events"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    source_listing_id: Mapped[int] = mapped_column(
+        Integer, ForeignKey("source_listings.id"), nullable=False
+    )
+    run_id: Mapped[Optional[int]] = mapped_column(
+        Integer, ForeignKey("scraping_runs.id")
+    )
+    event_type: Mapped[str] = mapped_column(String(40), nullable=False)
+    detected_date: Mapped[date] = mapped_column(Date, nullable=False)
+    event_data: Mapped[Optional[dict]] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+    __table_args__ = (
+        Index("ix_source_listing_event_listing", "source_listing_id"),
+        Index("ix_source_listing_event_type_date", "event_type", "detected_date"),
+    )
+
+
+class SourceScanMetric(Base):
+    """Resumen y guardas de seguridad de cada escaneo de índice."""
+    __tablename__ = "source_scan_metrics"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    run_id: Mapped[int] = mapped_column(
+        Integer, ForeignKey("scraping_runs.id"), unique=True, nullable=False
+    )
+    source_id: Mapped[int] = mapped_column(
+        Integer, ForeignKey("data_sources.id"), nullable=False
+    )
+    scan_date: Mapped[date] = mapped_column(Date, nullable=False)
+
+    discovery_complete: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    safety_passed: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    stop_reason: Mapped[Optional[str]] = mapped_column(String(200))
+
+    baseline_active: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    seen_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    new_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    reappeared_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    missing_suspected_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    inactive_confirmed_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    detail_scraped_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+    __table_args__ = (
+        Index("ix_source_scan_metric_source_date", "source_id", "scan_date"),
     )
 
 

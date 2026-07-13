@@ -82,8 +82,8 @@ class ScraperConfig:
     headless: bool = True
     timeout: int = 30000  # milisegundos
     max_retries: int = 3
-    crautos_max_pages: int = int(os.getenv("DTC_CRAUTOS_MAX_PAGES", "200"))
-    encuentra24_max_pages: int = int(os.getenv("DTC_ENCUENTRA24_MAX_PAGES", "200"))
+    crautos_max_pages: int = int(os.getenv("DTC_CRAUTOS_MAX_PAGES", "5000"))
+    encuentra24_max_pages: int = int(os.getenv("DTC_ENCUENTRA24_MAX_PAGES", "5000"))
     delay_between_pages: float = 2.0  # segundos entre páginas
     delay_between_requests: float = 1.0  # segundos entre requests
     user_agent: str = (
@@ -97,8 +97,19 @@ class ScraperConfig:
 class VMUConfig:
     """Configuración del motor de Vehicle Market Units."""
     km_tolerance: int = 2000  # diferencia máxima de kilometraje (±km)
-    days_to_exit: int = 5  # días sin detección para considerar salida del mercado
+    days_to_exit: int = 5  # legado: no usar para Source Collector V2
     min_confidence_score: float = 0.7  # score mínimo para considerar match
+
+
+@dataclass
+class CollectorConfig:
+    """Configuración del monitor liviano de presencia por fuente."""
+    inactive_confirm_scans: int = int(os.getenv("DTC_INACTIVE_CONFIRM_SCANS", "3"))
+    min_coverage_ratio: float = float(os.getenv("DTC_MIN_COVERAGE_RATIO", "0.85"))
+    safety_min_baseline: int = int(os.getenv("DTC_SAFETY_MIN_BASELINE", "100"))
+    max_detail_scrapes_per_run: int = int(
+        os.getenv("DTC_MAX_DETAIL_SCRAPES_PER_RUN", "1000")
+    )
 
 
 @dataclass
@@ -107,6 +118,7 @@ class AppConfig:
     db: DatabaseConfig = field(default_factory=DatabaseConfig)
     api: APIConfig = field(default_factory=APIConfig)
     scraper: ScraperConfig = field(default_factory=ScraperConfig)
+    collector: CollectorConfig = field(default_factory=CollectorConfig)
     vmu: VMUConfig = field(default_factory=VMUConfig)
     log_level: str = os.getenv("DTC_LOG_LEVEL", "INFO")
     save_json_backup: bool = os.getenv("DTC_SAVE_JSON_BACKUP", "true").lower() == "true"
