@@ -125,6 +125,26 @@ class BaseScraper(ABC):
         )
         await self.start_browser()
 
+    async def reset_page(self):
+        """Recrea la página actual cuando una navegación queda colgada."""
+        if not self._browser_is_alive():
+            await self.start_browser()
+            return
+
+        try:
+            context = self.page.context
+            await self.page.close()
+            self.page = await context.new_page()
+            self.page.set_default_timeout(self.config.timeout)
+        except Exception as exc:
+            logger.warning(
+                "No se pudo resetear la página para %s; reiniciando navegador: %s",
+                self.source_name,
+                exc,
+            )
+            await self.close_browser()
+            await self.start_browser()
+
     def _start_run(self) -> int:
         self.lock_session = SessionLocal()
         if not acquire_source_lock(self.lock_session, self.source_name):

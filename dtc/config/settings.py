@@ -80,12 +80,12 @@ class APIConfig:
 class ScraperConfig:
     """Configuración de los agentes de scraping."""
     headless: bool = True
-    timeout: int = 30000  # milisegundos
-    max_retries: int = 3
+    timeout: int = int(os.getenv("DTC_SCRAPER_TIMEOUT_MS", "30000"))
+    max_retries: int = int(os.getenv("DTC_SCRAPER_MAX_RETRIES", "3"))
     crautos_max_pages: int = int(os.getenv("DTC_CRAUTOS_MAX_PAGES", "5000"))
     encuentra24_max_pages: int = int(os.getenv("DTC_ENCUENTRA24_MAX_PAGES", "5000"))
-    delay_between_pages: float = 2.0  # segundos entre páginas
-    delay_between_requests: float = 1.0  # segundos entre requests
+    delay_between_pages: float = float(os.getenv("DTC_DELAY_BETWEEN_PAGES", "2.0"))
+    delay_between_requests: float = float(os.getenv("DTC_DELAY_BETWEEN_REQUESTS", "1.0"))
     user_agent: str = (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "

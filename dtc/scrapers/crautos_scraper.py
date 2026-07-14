@@ -206,6 +206,7 @@ class CRAutosScraper(BaseScraper):
 
         except Exception as e:
             logger.error(f"Error parseando anuncio {url}: {e}")
+            await self.reset_page()
             return None
 
     @staticmethod
