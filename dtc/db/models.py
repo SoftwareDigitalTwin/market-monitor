@@ -177,6 +177,7 @@ class RawListing(Base):
     vmu = relationship("VehicleMarketUnit", back_populates="raw_listings")
 
     __table_args__ = (
+        UniqueConstraint("source_id", "listing_key", name="uq_raw_source_listing_key"),
         UniqueConstraint("source_id", "listing_key", "capture_date", name="uq_source_listing_key_date"),
         UniqueConstraint("source_id", "external_id", "capture_date", name="uq_source_listing_date"),
         UniqueConstraint("source_id", "url", "capture_date", name="uq_source_url_date"),
@@ -214,6 +215,7 @@ class SourceListing(Base):
 
     first_seen_date: Mapped[date] = mapped_column(Date, nullable=False)
     last_seen_date: Mapped[date] = mapped_column(Date, nullable=False)
+    view_history: Mapped[Optional[dict]] = mapped_column(JSON)
     inactive_at: Mapped[Optional[date]] = mapped_column(Date)
     detail_last_scraped_date: Mapped[Optional[date]] = mapped_column(Date)
 

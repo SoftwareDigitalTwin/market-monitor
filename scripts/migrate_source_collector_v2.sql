@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS source_listings (
 
     first_seen_date DATE NOT NULL,
     last_seen_date DATE NOT NULL,
+    view_history JSON NULL,
     inactive_at DATE NULL,
     detail_last_scraped_date DATE NULL,
 

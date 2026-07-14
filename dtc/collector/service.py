@@ -47,6 +47,17 @@ def _event(
     )
 
 
+def _view_history_with_scan(
+    view_history: dict | None,
+    scan_date: date,
+    seen_count: int,
+) -> dict:
+    history = dict(view_history or {})
+    date_key = scan_date.isoformat()
+    history[date_key] = int(history.get(date_key, 0) or 0) + int(seen_count)
+    return history
+
+
 def bootstrap_source_listings_from_raw(
     session: Session,
     source: DataSource,
@@ -83,11 +94,17 @@ def bootstrap_source_listings_from_raw(
                 "canonical_url": row.url,
                 "first_seen_date": row.capture_date,
                 "last_seen_date": row.capture_date,
+                "view_history": {row.capture_date.isoformat(): 1},
                 "latest_raw_listing_id": row.id,
                 "detail_last_scraped_date": row.capture_date,
             }
             continue
 
+        current["view_history"] = _view_history_with_scan(
+            current.get("view_history"),
+            row.capture_date,
+            1,
+        )
         if row.capture_date < current["first_seen_date"]:
             current["first_seen_date"] = row.capture_date
         if row.capture_date >= current["last_seen_date"]:
@@ -111,6 +128,7 @@ def bootstrap_source_listings_from_raw(
             reappearance_count=0,
             first_seen_date=data["first_seen_date"],
             last_seen_date=data["last_seen_date"],
+            view_history=data["view_history"],
             latest_raw_listing_id=data["latest_raw_listing_id"],
             detail_last_scraped_date=data["detail_last_scraped_date"],
         )
@@ -146,7 +164,11 @@ def reconcile_manifest(
     4. Solo si el scan es completo y pasa la guarda de cobertura, incrementa
        ausencias y confirma inactividad.
     """
-    unique_by_key = {ref.listing_key: ref for ref in refs}
+    view_counts_by_key: dict[str, int] = {}
+    unique_by_key: dict[str, ListingRef] = {}
+    for ref in refs:
+        view_counts_by_key[ref.listing_key] = view_counts_by_key.get(ref.listing_key, 0) + 1
+        unique_by_key[ref.listing_key] = ref
     refs = list(unique_by_key.values())
     result = ManifestResolution(seen_count=len(refs))
 
@@ -192,6 +214,9 @@ def reconcile_manifest(
                 reappearance_count=0,
                 first_seen_date=scan_date,
                 last_seen_date=scan_date,
+                view_history={
+                    scan_date.isoformat(): view_counts_by_key.get(ref.listing_key, 1)
+                },
                 last_seen_run_id=run.id,
             )
             session.add(row)
@@ -204,6 +229,11 @@ def reconcile_manifest(
         row.last_seen_run_id = run.id
         row.external_id = ref.external_id or row.external_id
         row.canonical_url = ref.url
+        row.view_history = _view_history_with_scan(
+            row.view_history,
+            scan_date,
+            view_counts_by_key.get(ref.listing_key, 1),
+        )
 
         if old_url != ref.url:
             _event(

@@ -25,6 +25,7 @@ def init_db():
     """Crea todas las tablas en la base de datos."""
     Base.metadata.create_all(bind=engine)
     ensure_listing_key_schema()
+    ensure_source_listing_schema()
     print("✓ Tablas creadas correctamente en la base de datos.")
 
 
@@ -87,6 +88,22 @@ def ensure_listing_key_schema():
                 "ALTER TABLE raw_listings "
                 "ADD UNIQUE INDEX uq_source_listing_key_date "
                 "(source_id, listing_key, capture_date)"
+            ))
+
+
+def ensure_source_listing_schema():
+    """Agrega columnas nuevas del collector a instalaciones existentes."""
+    inspector = inspect(engine)
+    table_names = set(inspector.get_table_names())
+    if "source_listings" not in table_names:
+        return
+
+    columns = {column["name"] for column in inspector.get_columns("source_listings")}
+    if "view_history" not in columns:
+        with engine.begin() as connection:
+            connection.execute(text(
+                "ALTER TABLE source_listings "
+                "ADD COLUMN view_history JSON NULL AFTER last_seen_date"
             ))
 
 

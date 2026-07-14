@@ -135,14 +135,18 @@ def upsert_raw_listing_record(
     source: DataSource,
     listing_data: dict,
 ) -> tuple[RawListing, bool]:
-    """Retorna (registro, inserted) manteniendo compatibilidad con el flujo legado."""
+    """
+    Guarda una sola fila por anuncio único.
+
+    `capture_date` representa la última fecha en que se refrescó el detalle.
+    La presencia diaria vive en `source_listings` y `source_listing_events`.
+    """
     capture_date = _parse_capture_date(listing_data["capture_date"])
     listing_key = build_listing_key(source.name, listing_data)
 
     query = session.query(RawListing).filter(
         RawListing.source_id == source.id,
         RawListing.listing_key == listing_key,
-        RawListing.capture_date == capture_date,
     )
 
     existing = query.first()

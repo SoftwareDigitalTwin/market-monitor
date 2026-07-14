@@ -61,6 +61,12 @@ Si estás actualizando una base existente, `python main.py init` también crea l
 mysql -u <user> -p <database> < scripts/migrate_source_collector_v2.sql
 ```
 
+Para instalaciones que todavía tienen varios snapshots del mismo anuncio en `raw_listings`, compacta a una sola fila por anuncio:
+
+```bash
+mysql -u <user> -p <database> < scripts/migrate_raw_listings_unique.sql
+```
+
 ## 3. Consumir el API
 
 Healthcheck sin autenticación:
@@ -135,8 +141,9 @@ No borres esos volúmenes o carpetas si quieres conservar histórico.
 
 ## Deduplicación
 
-La DB evita duplicados diarios de detalle en `raw_listings` con:
+La DB evita duplicados de detalle en `raw_listings` con:
 
+- `source_id + listing_key`
 - `source_id + listing_key + capture_date`
 - `source_id + external_id + capture_date`
 - `source_id + url + capture_date`
@@ -144,5 +151,11 @@ La DB evita duplicados diarios de detalle en `raw_listings` con:
 El collector mantiene una identidad persistente por anuncio en `source_listings` con:
 
 - `source_id + listing_key`
+
+Cada anuncio único guarda su historial de presencia en `source_listings.view_history`, por ejemplo:
+
+```json
+{"2026-07-13": 1, "2026-07-14": 1}
+```
 
 Las imágenes no se descargan ni se guardan en una tabla separada.
